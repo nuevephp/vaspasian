@@ -1,0 +1,16 @@
+# Turn on URL rewriting
+RewriteEngine On
+
+# Installation directory
+#RewriteBase /
+
+# Protect application and system files from being viewed
+RewriteRule ^(application|system|sql|captcha) - [F,L]
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Main URL rewriting.
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]
