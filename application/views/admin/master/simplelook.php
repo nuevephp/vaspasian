@@ -39,10 +39,5 @@
 	<div id="footer">
 		Copyright &copy; <?php echo Date('Y'); ?> <?php if(isset($system_name)){ echo $system_name; } ?> <?php if(isset($system_version)){ echo $system_version; } ?> | All Rights Reserved.
 	</div>
-	
-	<?php echo core::stylesheet('/css/simplelook.css'); ?>
-	<script src="/shared/js/lib/jquery-1.2.6.min.js" type="text/javascript" charset="utf-8"></script>
-	<?php //var_dump($javascript); die(); echo core::script($javascript); ?>
-	<script src="/admin/assets/js/base.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@ class Vaspasian extends Controller
 		$this->templex = new Templex('admin/master/simplelook');
 		$this->templex->set('site_name', 'Vaspasian');
 		$this->templex->set('system_name', 'Vaspasian'); // System Name
-		$this->templex->set('system_version', '0.0.1'); // System Version
+		$this->templex->set('system_version', $this->config->item('vasp_version')); // System Version
 		
 		// System Configurations
 		define('WEBROOT', $this->config->item('webroot')); // Set website root

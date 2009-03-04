@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('templex');
+$autoload['libraries'] = array('templex', 'session');
 
 
 /*

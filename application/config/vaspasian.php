@@ -4,6 +4,11 @@
  * by Andrew Smith <a.smith@silentworks.co.uk>
  */
 
+/**
+ * Vaspasian version
+ */
+$config['vasp_version'] = "0.0.1"; 
+ 
 // Webroot
 $config['webroot'] = dirname(dirname(dirname(__FILE__))) . '/webroot/';
 

@@ -37,5 +37,17 @@ define('FOPEN_WRITE_CREATE_STRICT', 			'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
+/*
+|--------------------------------------------------------------------------
+| Vaspasian Constants
+|--------------------------------------------------------------------------
+|
+| These are vaspasian defined constants
+|
+*/
+define('MODPATH', APPPATH . 'modules');
+define('LAYOUT_PATH', APPPATH . 'admin/views/layout/');
+define('SNIPPET_PATH', APPPATH . 'admin/views/snippet/');
+
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

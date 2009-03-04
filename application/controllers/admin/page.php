@@ -16,7 +16,7 @@ class Page extends Vaspasian
 		//$this->page_part = new Page_Part_Model;
 		
 		// Load Model
-		$this->load->model('page_model');
+		//$this->load->model('page_model');
 	}
 	
 	public function index()
@@ -27,13 +27,13 @@ class Page extends Vaspasian
 
 		// Content
 		$data['page_title'] = "Pages";
-		$data['page'] = $this->page_model->find(1);
-		$data['pages'] = $this->page_model->find_all();
-		$data['children_content'] = $this->children(1, 0, true);
+		$data['page'] = array();//$this->page_model->find(1);
+		$data['pages'] = array();//$this->page_model->find_all();
+		//$data['children_content'] = $this->children(1, 0, true);
 		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
 		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
 		
-        $this->templex->render('page/main', $data);
+        $this->templex->render('admin/page/main', $data);
 	}
 	
 	// Add part to page

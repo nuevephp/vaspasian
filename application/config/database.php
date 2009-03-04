@@ -34,13 +34,13 @@
 | the active record class
 */
 
-$active_group = "default";
+$active_group = "work";
 $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
-$db['default']['username'] = "";
-$db['default']['password'] = "";
-$db['default']['database'] = "";
+$db['default']['username'] = "root";
+$db['default']['password'] = "meltdown";
+$db['default']['database'] = "myui";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
@@ -51,5 +51,31 @@ $db['default']['char_set'] = "utf8";
 $db['default']['dbcollat'] = "utf8_general_ci";
 
 
+$db['work']['hostname'] = "localhost";
+$db['work']['username'] = "root";
+$db['work']['password'] = "";
+$db['work']['database'] = "myui";
+$db['work']['dbdriver'] = "mysql";
+$db['work']['dbprefix'] = "";
+$db['work']['pconnect'] = TRUE;
+$db['work']['db_debug'] = TRUE;
+$db['work']['cache_on'] = FALSE;
+$db['work']['cachedir'] = "";
+$db['work']['char_set'] = "utf8";
+$db['work']['dbcollat'] = "utf8_general_ci";
+
+/* Portable */
+$db['portable']['hostname'] = "localhost";
+$db['portable']['username'] = "root";
+$db['portable']['password'] = "";
+$db['portable']['database'] = "myui";
+$db['portable']['dbdriver'] = "mysql";
+$db['portable']['dbprefix'] = "";
+$db['portable']['pconnect'] = TRUE;
+$db['portable']['db_debug'] = TRUE;
+$db['portable']['cache_on'] = FALSE;
+$db['portable']['cachedir'] = "";
+$db['portable']['char_set'] = "utf8";
+$db['portable']['dbcollat'] = "utf8_general_ci";
 /* End of file database.php */
-/* Location: ./system/application/config/database.php */
+/* Location: ./application/config/database.php */
