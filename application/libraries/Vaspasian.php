@@ -13,14 +13,17 @@ class Vaspasian extends Controller
 	function __construct() {
 		parent::__construct();
 		
-		// Load Helpers
-		$this->load->helper('admin');
-		
 		// Profiler
 		//$this->output->enable_profiler(TRUE);
 		
+		// Load Configuration
+		$this->config->load('vaspasian');
+		
+		// Load Helpers
+		$this->load->helper('admin');
+		
 		// Set Master Template using Templex
-		$this->templex = new Templex('master/simplelook');
+		$this->templex = new Templex('admin/master/simplelook');
 		$this->templex->set('site_name', 'Vaspasian');
 		$this->templex->set('system_name', 'Vaspasian'); // System Name
 		$this->templex->set('system_version', '0.0.1'); // System Version
@@ -29,7 +32,6 @@ class Vaspasian extends Controller
 		define('WEBROOT', $this->config->item('webroot')); // Set website root
 		$this->public_folder = $this->config->item('public_folder');
 		
-		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 	
 	/**

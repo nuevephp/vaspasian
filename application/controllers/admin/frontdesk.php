@@ -23,7 +23,7 @@ class Frontdesk extends Vaspasian
 		$data['page_title'] = "Frontdesk";
 
 		// Render View
-		$this->templex->render('frontdesk/main', $data);
+		$this->templex->render('admin/frontdesk/main', $data);
 	}
 }
 /* End of file frontdesk.php */
