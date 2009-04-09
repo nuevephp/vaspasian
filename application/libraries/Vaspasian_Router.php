@@ -1,10 +1,10 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /* define the modules base path */
-define('MODBASE', APPPATH.'modules/');
+define('MODBASE', 'modules/');
 
 /* define the offset from application/controllers */
-define('MODOFFSET', '../modules/');
+define('MODOFFSET', '../../modules/');
 
 /**
  * Modular Extensions - PHP5
