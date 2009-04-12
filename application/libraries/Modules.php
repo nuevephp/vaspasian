@@ -93,8 +93,36 @@ class Modules
 		/* don't autoload CI_ or MY_ prefixed classes */
 		if (strstr($class, 'CI_') OR strstr($class, 'MY_')) return;
 			
-		if(is_file($location = APPPATH.'libraries/'.$class.EXT))
-			include_once $location;		
+		if(is_file($location = APPPATH.'libraries/'.$class.EXT)) {
+			include_once $location;
+		}
+		
+		/* autoload application controllers */	
+		if(is_file($location = APPPATH.'controllers/'.$class.EXT)) {
+			include_once $location;
+		}
+		
+		/**
+		 * Modified Modules Config
+		 *
+		 * Autoload modules controllers.
+		 */
+		$handle = opendir(MODBASE);
+		
+		if ($handle) {
+		    while (false !== ($module = readdir($handle))) {
+		        if ($module != "." && $module != ".." && $module != ".svn") {
+		        	if(is_file($location = MODBASE.$module.'/controllers/'.strtolower($class).EXT)) {
+						include_once $location;
+					}
+		        }
+		    }
+		    closedir($handle);
+		}
+		/* autoload modules controllers */	
+		/*if(is_file($location = MODBASE.'controllers/'.$class.EXT)) {
+			include_once $location;
+		}*/
 	}
 
 	/** Load a module file **/

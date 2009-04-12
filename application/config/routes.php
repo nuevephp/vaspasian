@@ -40,9 +40,10 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "page";
 $route['scaffolding_trigger'] = "";
 
+include_once "db_routes.php";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

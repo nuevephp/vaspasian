@@ -1,15 +1,25 @@
 <?php
 
-class Welcome extends Controller {
+class Welcome extends Page {
 
-	function Welcome()
+	var $layout = FALSE;
+	var $parser = TRUE;
+	
+	public function Welcome()
 	{
 		parent::Controller();
 	}
 	
-	function index()
+	public function index()
 	{
-		$this->load->view('welcome_message');
+		// Set Master Template using Templex
+		$this->templex->set('cmsname', parent::cmsname());
+	}
+	
+	public function hello($name)
+	{
+		$this->method_autoload = FALSE;
+		echo "Hello " . $name;
 	}
 }
 

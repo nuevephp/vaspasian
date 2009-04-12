@@ -34,13 +34,13 @@
 | the active record class
 */
 
-$active_group = "work";
+$active_group = "portable";
 $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
 $db['default']['password'] = "meltdown";
-$db['default']['database'] = "myui";
+$db['default']['database'] = "vasp";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
@@ -54,7 +54,7 @@ $db['default']['dbcollat'] = "utf8_general_ci";
 $db['work']['hostname'] = "localhost";
 $db['work']['username'] = "root";
 $db['work']['password'] = "";
-$db['work']['database'] = "myui";
+$db['work']['database'] = "vasp";
 $db['work']['dbdriver'] = "mysql";
 $db['work']['dbprefix'] = "";
 $db['work']['pconnect'] = TRUE;
@@ -67,8 +67,8 @@ $db['work']['dbcollat'] = "utf8_general_ci";
 /* Portable */
 $db['portable']['hostname'] = "localhost";
 $db['portable']['username'] = "root";
-$db['portable']['password'] = "";
-$db['portable']['database'] = "myui";
+$db['portable']['password'] = "meltdown";
+$db['portable']['database'] = "vasp";
 $db['portable']['dbdriver'] = "mysql";
 $db['portable']['dbprefix'] = "";
 $db['portable']['pconnect'] = TRUE;

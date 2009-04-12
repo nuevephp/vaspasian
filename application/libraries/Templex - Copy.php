@@ -8,7 +8,7 @@
  *
  */
 class Templex
-{   
+{
 	// Default template file
 	public $template;
 	
@@ -19,7 +19,7 @@ class Templex
 	 *
 	 */
 	public function __construct($template = 'template')
-	{	
+	{
 		$this->CI =& get_instance();
 		
 		$this->template($template);
@@ -44,9 +44,9 @@ class Templex
 	}
 	
 	/**
-	 * Manually render view
+	 *
 	 */
-	public function render($view = '' , $view_data = FALSE, $parser = '', $return = FALSE, $output = FALSE)
+	public function render($view = '' , $view_data = array(), $parser = '', $return = FALSE, $output = FALSE)
 	{
 		switch ($parser) {
 			case 'parser':

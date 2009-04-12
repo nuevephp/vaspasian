@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://cmsin.dev.syzygy.net/";
+$config['base_url']	= "http://vaspasiancms.dev.silentworks.co.uk/";
 
 /*
 |--------------------------------------------------------------------------
