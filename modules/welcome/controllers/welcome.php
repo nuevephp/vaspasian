@@ -2,12 +2,13 @@
 
 class Welcome extends Page {
 
-	var $layout = FALSE;
-	var $parser = TRUE;
+	var $layout = TRUE;
+	// var $parser = 'parser';
+	var $model_name = FALSE;
 	
-	public function Welcome()
+	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 	
 	public function index()

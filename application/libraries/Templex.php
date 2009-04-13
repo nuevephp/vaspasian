@@ -53,13 +53,13 @@ class Templex
 				// Load CI Template Parser Library
 				$this->CI->load->library('parser');
 				if($view !== ''){
-					$this->set('content', $this->CI->parser->parse($view, $view_data, TRUE));			
+					$this->set('content_for_layout', $this->CI->parser->parse($view, $view_data, TRUE));			
 				}
 				$view = $this->CI->parser->parse($this->template, $this->data, $return);
 			break;
 			default:
 				if($view !== ''){
-					$this->set('content', $this->CI->load->view($view, $view_data, TRUE));			
+					$this->set('content_for_layout', $this->CI->load->view($view, $view_data, TRUE));			
 				}
 				$view = $this->CI->load->view($this->template, $this->data, $return);
 			break;

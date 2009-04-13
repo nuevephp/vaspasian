@@ -25,7 +25,7 @@ class Vaspasian_Parser extends CI_Parser {
         {
             $temp = trim($matches[0], "{}");
             $res = explode(":", $temp);
-            var_dump($res);
+            // var_dump($res);
             if(count($res) > 1)
             {
                 switch($res[1])
