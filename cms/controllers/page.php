@@ -13,20 +13,23 @@
  */
 class Page extends Frontend
 {
+	var $master = 'page/master';
+	// var $layout = FALSE;
+	var $model_name = FALSE;
+	
 	public function __construct() {
 		parent::__construct();
+		
+		$this->view_data['cmsname'] = $this->cmsname();
 	}
 	
-	public function index()
-	{
-		$this->templex->set('cmsname', $this->cmsname());
-		$this->templex->set('classname', 'Page');
+	public function index() {
+		
 	}
 	
-	public static function cmsname()
-	{
+	public static function cmsname() {
 		return "Vaspasian CMS";
 	}
 }
 /* End of file page.php */
-/* Location: ./application/controllers/page.php */
+/* Location: ./cms/controllers/page.php */

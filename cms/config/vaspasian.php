@@ -7,19 +7,19 @@
 /**
  * Vaspasian version
  */
-$config['vasp_version'] = "0.0.1"; 
+$config['vasp_version'] = "0.1.0"; 
  
 // Webroot
-$config['webroot'] = dirname(dirname(dirname(__FILE__))) . '/webroot/';
+$config['webroot'] = dirname(dirname(dirname(__FILE__))) . '/';
 
 /**
  * Upload Directory
  * WITHOUT SLASHES
  */
-$config['public_folder'] = "data";
+$config['public_folder'] = "upload";
 
 // File Extension
 $config['file_ext'] = "php";
 
 /* End of file vaspasian.php */
-/* Location: ./application/admin/config/vaspasian.php */
+/* Location: ./cms/admin/config/vaspasian.php */
