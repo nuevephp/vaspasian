@@ -11,14 +11,16 @@
  *	Documents, Audio, Video, Images, Flash Files and other media formats
  *
  */
-class Filemanager extends Vaspasian
+class File extends Vaspasian
 {
+	// var $model_name = FALSE;
+	
 	public function __construct()
 	{
 	    parent::__construct();
 
-		// Load Model
-		$this->load->model('file_model');
+		// Load Library
+		$this->load->library('form_validation');
 
 		// Get last segment of uri
 		$this->last_seg = $this->uri->segment(3);
@@ -27,7 +29,7 @@ class Filemanager extends Vaspasian
 	// Default - Images
 	public function index()
 	{   
-		if ($this->form_validation->run('filemanager') != FALSE)
+		if ($this->form_validation->run('file') != FALSE)
 		{
 			// Validation
 			switch($_POST['type']) {
@@ -84,27 +86,28 @@ class Filemanager extends Vaspasian
 		}
 		
 	    // Page title
-		$this->templex->set('title', "File");
+		$this->view_data['title'] = 'File';
 		
 		// Load Javascript
 		$js = array('/shared/js/lib/shadowbox-2.0.js');
-		$this->templex->set('javascript', $js);
+		$this->view_data['javascript'] = $js;
 
 		// Content
-		$data['page_title'] = "File";
-		$data['type_url'] = $this->last_seg;
-		$data['files'] = $this->file_model->find_all();
-		$data['public_folder'] = $this->config->item('public_folder');
-		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
-        
-        $this->templex->render('filemanager/main', $data);
+		$this->view_data['page_title'] = "File";
+		$this->view_data['type_url'] = $this->last_seg;
+		$this->view_data['files'] = $this->files->get();
+		$this->view_data['public_folder'] = $this->config->item('public_folder');
+		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
 	}
 
 	// Images
 	public function images()
 	{
-		if ($this->form_validation->run('filemanager') != FALSE)
+		// Define view
+		$this->view = 'admin/file/index';
+		
+		if ($this->form_validation->run('file') != FALSE)
 		{
 			// Validation
 			$config['upload_path'] = WEBROOT . $this->config->item('public_folder') . '/images/';
@@ -143,23 +146,21 @@ class Filemanager extends Vaspasian
 		}
 		 
 		// Page title
-		$this->templex->set('title', "File");
+		$this->view_data['title'] = 'File';
 
 		// Content
-		$data['page_title'] = "File | Images";
-		$data['type_url'] = $this->last_seg;
-		$data['files'] = $this->file_model->find_all(array('type' => 'images'));
-		$data['public_folder'] = $this->config->item('public_folder');
-		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
-        
-        $this->templex->render('filemanager/main', $data);
+		$this->view_data['page_title'] = "File | Images";
+		$this->view_data['type_url'] = $this->last_seg;
+		$this->view_data['files'] = array(); //$this->file_model->find_all(array('type' => 'images'));
+		$this->view_data['public_folder'] = $this->config->item('public_folder');
+		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
 	}
 
 	// Documents
 	public function documents()
 	{
-		if ($this->form_validation->run('filemanager') != FALSE)
+		if ($this->form_validation->run('file') != FALSE)
 		{
 			// Validation
 			$config['upload_path'] = WEBROOT . $this->config->item('public_folder') . '/documents/';
@@ -195,13 +196,13 @@ class Filemanager extends Vaspasian
 		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
 		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
         
-        $this->templex->render('filemanager/main', $data);
+        $this->templex->render('file/main', $data);
 	}
 
 	// Audio
 	public function audio()
 	{
-		if ($this->form_validation->run('filemanager') != FALSE)
+		if ($this->form_validation->run('file') != FALSE)
 		{
 			// Validation
 			$config['upload_path'] = WEBROOT . $this->config->item('public_folder') . '/audio/';
@@ -237,13 +238,13 @@ class Filemanager extends Vaspasian
 		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
 		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
         
-        $this->templex->render('filemanager/main', $data);
+        $this->templex->render('file/main', $data);
 	}
 
 	// Video
 	public function video()
 	{
-		if ($this->form_validation->run('filemanager') != FALSE)
+		if ($this->form_validation->run('file') != FALSE)
 		{
 			// Validation
 			$config['upload_path'] = WEBROOT . $this->config->item('public_folder') . '/video/';
@@ -279,7 +280,7 @@ class Filemanager extends Vaspasian
 		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
 		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
         
-        $this->templex->render('filemanager/main', $data);
+        $this->templex->render('file/main', $data);
 	}
 
 	// Delete Confirmation message
@@ -287,10 +288,10 @@ class Filemanager extends Vaspasian
 	{
 		$referer = explode('/', $_SERVER['HTTP_REFERER']);
 		$url_last = array_pop($referer);
-		$url = $url_last == "filemanager" ? $url_last : "filemanager/" . $url_last;
+		$url = $url_last == "file" ? $url_last : "file/" . $url_last;
 		
 		$file = $this->file_model->find($id);
-        $this->session->set_flashdata('error', 'Are you sure you would like to delete "'.$file->name.'"? <a href="'.site_url('admin/filemanager/delete/'.$id).'" style="color: #fff"><strong>Yes</strong></a> | <a href="'.site_url('admin/' . $url).'" style="color: #fff" class="delete-no"><strong>No</strong></a>');
+        $this->session->set_flashdata('error', 'Are you sure you would like to delete "'.$file->name.'"? <a href="'.site_url('admin/file/delete/'.$id).'" style="color: #fff"><strong>Yes</strong></a> | <a href="'.site_url('admin/' . $url).'" style="color: #fff" class="delete-no"><strong>No</strong></a>');
 		redirect('admin/' . $url);
 	}
 
@@ -306,9 +307,9 @@ class Filemanager extends Vaspasian
 		if($this->file_model->delete($id))
 		{
 			$this->session->set_flashdata('success', 'You have successfully deleted "'. $file->name .'".');
-			redirect('admin/filemanager');
+			redirect('admin/file');
 		}
     }
 }
-/* End of file filemanager.php */
-/* Location: ./application/admin/controllers/filemanager.php */
+/* End of file file.php */
+/* Location: ./cms/admin/controllers/file.php */

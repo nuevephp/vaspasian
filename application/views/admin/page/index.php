@@ -31,7 +31,7 @@
 								</a>
 							</td>
 						</tr>
-						<?php echo $children_content; ?>
+						<?php //echo $children_content; ?>
 						<tr>
 							<td colspan="5"><?php //echo $pagination; ?></td>
 						</tr>

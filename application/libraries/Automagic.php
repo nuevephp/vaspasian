@@ -25,11 +25,10 @@ class Automagic extends Controller
     var $model_name;
     
     //this are vars use for the layout autoloading
-    var $layout = FALSE;
-    var $head_template;
+    var $layout = TRUE;
+    var $master = 'page/master';
     var $view;
-    var $foot_template;
-    var $view_data;
+    var $view_data = array();
     var $method_autoload = TRUE;
     var $parser = '';
     
@@ -43,7 +42,7 @@ class Automagic extends Controller
         {
             if($this->model_name == NULL)
             {                
-                $this->model_name = $this->name.'s'; 
+                $this->model_name = strtolower($this->name).'s'; 
             }
             
             $this->load->model($this->model_name);
@@ -143,32 +142,23 @@ class Automagic extends Controller
         // If using as a layout style
         if($this->layout === TRUE)
         {
-        	$this->templex->template('page/index');
         	
-            if($this->parser !== '') {
-            	$this->templex->render('' , $view_data = FALSE, $parser = $this->parser);
-            } else { $this->templex->render($template_uri); }
-        	
-            /*$this->load->view(($this->head_template == NULL) ?
-                                                $base_layout_uri.'head' : $this->head_template,
-                                                $this->view_data);
-                                                
-            $this->load->view($template_uri, $this->view_data);
-            
-            $this->load->view(($this->foot_template == NULL) ?
-                                                $base_layout_uri.'foot' : $this->foot_template,
-	                                                $this->view_data);*/
+			$data['content_for_layout'] = $this->load->view($template_uri, $this->view_data, true);
+			if($this->parser !== '') { 
+				// Load CI Template Parser Library
+				$this->load->library('parser');
+				$this->parser->parse($this->master, $data);
+			} else { $this->load->view($this->master, $data); }
         }
         else
         {
-            // $this->load->view($template_uri, $this->view_data);
             $this->templex->template($template_uri);
             if($this->parser === TRUE) {
-            	$this->templex->render('' , $view_data = FALSE, $parser = $this->parser);
+            	$this->templex->render('' , $this->view_data, $parser = $this->parser);
             } else { $this->templex->render(); }
         }
         
     }
 }
 /* End of file Automagic.php */
-/* Location: /cygdrive/c/projects/dev/vaspasiancms/application/libraries/Automagic.php */
+/* Location: ./cms/libraries/Automagic.php */

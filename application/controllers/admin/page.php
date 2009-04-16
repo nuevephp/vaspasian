@@ -9,31 +9,25 @@
  */
 class Page extends Vaspasian
 {
-	public function __construct()
-	{
+	var $model_name = FALSE;
+	// var $layout = FALSE;
+	
+	public function __construct() {
 		parent::__construct();
-		//$this->pages = new Page_Model;
-		//$this->page_part = new Page_Part_Model;
-		
-		// Load Model
-		//$this->load->model('page_model');
 	}
 	
-	public function index()
-	{
+	public function index() {
 		
 		// Page title
-		$this->templex->set('title', "Pages");
+		$this->view_data['title'] = 'Pages';
 
 		// Content
-		$data['page_title'] = "Pages";
-		$data['page'] = array();//$this->page_model->find(1);
-		$data['pages'] = array();//$this->page_model->find_all();
-		//$data['children_content'] = $this->children(1, 0, true);
-		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
-		
-        $this->templex->render('admin/page/main', $data);
+		$this->view_data['page_title'] = 'Pages';
+		$this->view_data['page'] = array();//$this->page_model->find(1);
+		$this->view_data['pages'] = array();//$this->page_model->find_all();
+		//$this->data['children_content'] = $this->children(1, 0, true);
+		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
 	}
 	
 	// Add part to page

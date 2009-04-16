@@ -38,4 +38,4 @@ class Frontend extends Automagic
 	}
 }
 /* End of file Frontend.php */
-/* Location: ./application/libraries/Frontend.php */
+/* Location: ./cms/libraries/Frontend.php */

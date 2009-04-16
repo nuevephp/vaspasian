@@ -3,7 +3,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title><?php echo $site_name; ?> | <?php echo $title; ?></title>
-	<link rel="stylesheet" type="text/css" media="all" href="/admin/assets/css/simplelook.css">
 	<?php echo admin::stylesheet('/css/simplelook.css'); ?>
 </head>
 
@@ -29,13 +28,15 @@
 		<div id="admin_nav">
 			<ul>
 				<li><a href="<?php echo site_url('admin/recycle'); ?>"><span>Recycle</span></a></li>
-				<li><a href="<?php echo site_url('admin/filemanager'); ?>"><span>File</span></a></li>
+				<li><a href="<?php echo site_url('admin/file'); ?>"><span>File</span></a></li>
 				<li><a href="<?php echo site_url('admin/layout'); ?>"><span>Layout</span></a></li>
 				<li><a href="<?php echo site_url('admin/settings'); ?>"><span>Settings</span></a></li>
 			</ul>
 		</div>
 	</div>
-    <?php echo $content; ?>
+	
+    <?php echo $content_for_layout; ?>
+    
 	<div id="footer">
 		Copyright &copy; <?php echo Date('Y'); ?> <?php if(isset($system_name)){ echo $system_name; } ?> <?php if(isset($system_version)){ echo $system_version; } ?> | All Rights Reserved.
 	</div>

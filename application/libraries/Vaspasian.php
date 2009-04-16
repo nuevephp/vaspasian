@@ -8,13 +8,15 @@
  * Vaspasian Master Controller
  * Loads all settings
  */
-class Vaspasian extends Controller
+class Vaspasian extends Automagic
 {
+	var $master = 'admin/master/simplelook';
+	
 	function __construct() {
 		parent::__construct();
 		
 		// Profiler
-		//$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 		
 		// Load Configuration
 		$this->config->load('vaspasian');
@@ -22,11 +24,10 @@ class Vaspasian extends Controller
 		// Load Helpers
 		$this->load->helper('admin');
 		
-		// Set Master Template using Templex
-		$this->templex = new Templex('admin/master/simplelook');
-		$this->templex->set('site_name', 'Vaspasian');
-		$this->templex->set('system_name', 'Vaspasian'); // System Name
-		$this->templex->set('system_version', $this->config->item('vasp_version')); // System Version
+		// Set Master view variables
+		$this->view_data['site_name'] = 'Vaspasian';
+		$this->view_data['system_name'] = 'Vaspasian'; // System Name
+		$this->view_data['system_version'] = $this->config->item('vasp_version'); // System Version
 		
 		// System Configurations
 		define('WEBROOT', $this->config->item('webroot')); // Set website root
@@ -37,8 +38,7 @@ class Vaspasian extends Controller
 	/**
 	 * Send information to Recycle Bin
 	 */
-	public function recycle($name, $data, $type)
-	{
+	public function recycle($name, $data, $type) {
 		$this->load->model('recycle_model');
 		
 		// Store information into Recycle Bin Table

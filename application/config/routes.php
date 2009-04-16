@@ -43,7 +43,10 @@
 $route['default_controller'] = "page";
 $route['scaffolding_trigger'] = "";
 
+// CMS Routes
+// $route['admin/filemanager/images'] = "admin/filemanager/index";
+
 include_once "db_routes.php";
 
 /* End of file routes.php */
-/* Location: ./system/application/config/routes.php */
+/* Location: ./cms/config/routes.php */
