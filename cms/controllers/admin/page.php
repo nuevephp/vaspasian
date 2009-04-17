@@ -12,28 +12,20 @@ class Page extends Vaspasian
 	public function __construct()
 	{
 		parent::__construct();
-		//$this->pages = new Page_Model;
-		//$this->page_part = new Page_Part_Model;
-		
-		// Load Model
-		//$this->load->model('page_model');
 	}
 	
 	public function index()
 	{
 		
 		// Page title
-		$this->templex->set('title', "Pages");
+		$this->view_data['title'] = "Pages";
 
 		// Content
-		$data['page_title'] = "Pages";
-		$data['page'] = array();//$this->page_model->find(1);
-		$data['pages'] = array();//$this->page_model->find_all();
-		//$data['children_content'] = $this->children(1, 0, true);
-		$data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$data['error'] = isset($error) ? $error : $this->session->flashdata('error');
-		
-        $this->templex->render('admin/page/main', $data);
+		$this->view_data['page_title'] = "Pages";
+		$this->view_data['page'] = $this->pages->find(1);
+		$this->view_data['children_content'] = $this->children(1, 0, true);
+		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
 	}
 	
 	// Add part to page
@@ -168,12 +160,12 @@ class Page extends Vaspasian
 	// Load Children node
     public function children($parent_id, $level, $return=false)
     {
-        $pages = $this->load->model('page_model');
+        //$pages = $this->load->model('page_model');
         
         $expanded_rows = isset($_COOKIE['expanded_rows']) ? explode(',', $_COOKIE['expanded_rows']): array();
         
         // get all children of the page (parent_id)
-        $my_child = $this->page_model->find_all(array('parent_id' => $parent_id));
+        $my_child = $this->pages->find_all(array('parent_id' => $parent_id));//$this->pages->where('parent_id', $parent_id)->get();
         $children = array();
         foreach ($my_child as $index => $child)
         {
@@ -182,7 +174,7 @@ class Page extends Vaspasian
         								'title' =>$child->title,
         								'slug' => $child->slug,
         								'status_id' => $child->status_id,
-            							'has_children' => $pages->has_children($child->id),
+            							'has_children' => $this->pages->has_children($child->id),
             							'is_expanded' => in_array($child->id, $expanded_rows)
         							);
             
@@ -190,14 +182,10 @@ class Page extends Vaspasian
                 $children[$index]['children_rows'] = $this->children($child->id, $level+1, true);
         }
         
-        $content = $this->load->view('page/children', array(
+        $content = $this->load->view('admin/page/children', array(
             'children' => $children,
             'level'    => $level+1,
 		        ), $return);
-        /*$content = new View('page/children', array(
-            'children' => $children,
-            'level'    => $level+1,
-		        ));*/
         
         if ($return)
             return $content;

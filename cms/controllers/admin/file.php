@@ -77,7 +77,7 @@ class File extends Vaspasian
 		        $data['file'] = $original['file_name'];
 		        $data['type'] = $_POST['type'];
 		        
-		        $this->file_model->save($data);
+		        $this->files->save($data);
 		        $success = 'You have successfully added "'.$_POST['name'].'".';
 	        } else {
 	        	$error = $this->upload->display_errors('<span>', '</span>');
@@ -95,7 +95,7 @@ class File extends Vaspasian
 		// Content
 		$this->view_data['page_title'] = "File";
 		$this->view_data['type_url'] = $this->last_seg;
-		$this->view_data['files'] = $this->files->get();
+		$this->view_data['files'] = $this->files->find_all();
 		$this->view_data['public_folder'] = $this->config->item('public_folder');
 		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
 		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');

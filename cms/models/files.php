@@ -12,7 +12,7 @@
  * @copyright	Copyright (c) 2009, Silent Works.
  * @date		16 Apr 2009
  */
-class Files extends DataMapper
+class Files extends Vaspasian_Model
 {
 }
 /* End of file Files.php */

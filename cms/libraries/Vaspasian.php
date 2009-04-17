@@ -16,7 +16,7 @@ class Vaspasian extends Automagic
 		parent::__construct();
 		
 		// Profiler
-		$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 		
 		// Load Configuration
 		$this->config->load('vaspasian');

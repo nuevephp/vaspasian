@@ -10,13 +10,15 @@
 class Vaspasian_Model extends Model
 {
 	// Table name
-	protected $table = '';
+	var $table;
 	
 	public function __construct()
 	{
 		parent::__construct();
 		
 		log_message('debug', "Vaspasian_Model Class Initialized");
+		
+		if($this->table == null){ $this->table = strtolower(get_class($this)); }
 	}
 	
 	/**
@@ -46,11 +48,11 @@ class Vaspasian_Model extends Model
      * @param integer $limit
      * @return object
      */
-    public function find($where = NULL, $orderby = 'id', $direction = 'ASC', $limit = '')
+    public function find($where = '', $orderby = 'id', $direction = 'ASC', $limit = '')
     {
 		if(!is_array($where))
 			$where = array('id'=>$where);
-		if($limit != '')
+		if($limit !== '')
 			$this->db->limit($limit);
         $query = $this->db->orderby($orderby, $direction)->getwhere($this->table, $where);
         return $query->row();
@@ -65,10 +67,10 @@ class Vaspasian_Model extends Model
      * @param integer $limit
      * @return object
      */
-    public function find_all($where = NULL, $orderby = 'id', $direction = 'ASC', $limit = '')
+    public function find_all($where = '', $orderby = 'id', $direction = 'ASC', $limit = '')
 	{
-		if($limit != '') $this->db->limit($limit);
-		if($where != '')
+		if($limit !== '') $this->db->limit($limit);
+		if($where !== '')
 			foreach($where as $key => $value)
 				$this->db->where_in($key, $value);
 

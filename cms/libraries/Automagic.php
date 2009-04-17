@@ -22,7 +22,7 @@ class Automagic extends Controller
     //Model will be loaded automatically (note if it doesn't exist it will generate error...
     //To disable autoloading of the model, set this var to FALSE in the desired controller...
     //To autoload another model just put the name in this var, ex: var $model_name = 'My_model'
-    var $model_name;
+    var $model_name = array();
     
     //this are vars use for the layout autoloading
     var $layout = TRUE;
@@ -42,22 +42,15 @@ class Automagic extends Controller
         {
             if($this->model_name == NULL)
             {                
-                $this->model_name = strtolower($this->name).'s'; 
+                $this->model_name = array(strtolower($this->name).'s'); 
             }
-            else if(is_array($this->model_name)) {
-            	foreach($this->model_name as $model){
-            		$this->load->model($model);
-	            
-		            $model_name = $this->model_name;
-		            $this->model_name = $this->$model;
-            	}
-            }
-            else {
-	            $this->load->model($this->model_name);
-	            
-	            $model_name = $this->model_name;
-	            $this->model_name = $this->$model_name;
-	        }
+            
+			foreach($this->model_name as $model){
+				$this->load->model($model);
+			
+				$model_name = $this->model_name;
+				$this->model_name = $this->$model;
+			}
         }
     }
     

@@ -16,9 +16,9 @@
 							<th class="col col-1">Type</th>
 							<th class="col col-2">Modify</th>
 						</tr>
-						<?php if(count($files->all) > 0) { $i = 1; ?>
+						<?php if(count($files) > 0) { $i = 1; ?>
 							<?php
-								foreach ($files->all as $file) {
+								foreach ($files as $file) {
 									$row = ($i % 2 != 0) ? 'row row-1' : 'alt';
 									$i++;
 							?>
