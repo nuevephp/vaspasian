@@ -7,19 +7,22 @@
 /**
  *
  */
-class Page extends Vaspasian
+class Admin_Page extends Vaspasian
 {
-	// var $model_name = array('pages', 'recycles');
+	var $model_name = array('pages', 'recycles');
+    
 	public function index() {
 		
 		// Page title
 		$this->view_data['title'] = 'Pages';
 		// Content
 		$this->view_data['page_title'] = 'Pages';
-        $this->view_data['page'] = $this->pages->where('id', 1)->get();
+        $this->view_data['page'] = $this->pages->find(1);
         $this->view_data['children_content'] = $this->children(1, 0, true);
         $this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
         $this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+
+        $this->view = 'admin_page/index';
     }
 	
 	// Add part to page
@@ -157,9 +160,9 @@ class Page extends Vaspasian
         $expanded_rows = isset($_COOKIE['expanded_rows']) ? explode(',', $_COOKIE['expanded_rows']): array();
         
         // get all children of the page (parent_id)
-        $my_child = $this->pages->where('parent_id', $parent_id)->get();
+        $my_child = $this->pages->find_all(array('parent_id' => $parent_id));
         $children = array();
-        foreach ($my_child->all as $index => $child)
+        foreach ($my_child as $index => $child)
         {
         	$children[$index] = array(
         								'id' => $child->id,
