@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title><?php echo $site_name; ?> | <?php echo $title; ?></title>
-	<?php echo admin::stylesheet('/css/simplelook.css'); ?>
+	<?php echo vasp_stylesheet('/css/simplelook.css'); ?>
 </head>
 
 <body>

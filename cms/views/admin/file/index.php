@@ -1,11 +1,11 @@
 		<div id="title_menu">
 			<div id="page_title"><?php echo $page_title; ?></div>
 			<div id="create">
-				<a href="<?php echo site_url('file/add'); ?>"><img src="<?php echo admin::theme(); ?>/images/create.png" alt="Add" width="16" /><span>Add</span></a>
+				<a href="<?php echo site_url('file/add'); ?>"><img src="<?php echo vasp_theme(); ?>/images/create.png" alt="Add" width="16" /><span>Add</span></a>
 			</div>
 		</div>
 		<div id="main">
-			<?php //echo admin::theme() ."<br />". WEBROOT . $public_folder; ?>
+			<?php //echo vasp_theme() ."<br />". WEBROOT . $public_folder; ?>
 			<div id="content-wrapper">
 				<div id="content">
 					<?php if($success) echo '<div id="success">'. $success .'</div>'; ?>
@@ -29,33 +29,33 @@
 											switch($type_url){
 												case "images":
 													if(file_exists(WEBROOT . $public_folder . '/images/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/images/'.$file->file .'" class="overlay" target="image"><img src="'. admin::theme() .'/images/photo.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/images/'.$file->file .'" class="overlay" target="image"><img src="'. vasp_theme() .'/images/photo.png' .'" /></a>';
 													}
 												break;
 												case "documents":
 													if(file_exists(WEBROOT . $public_folder . '/documents/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/documents/'.$file->file .'" target="_blank"><img src="'. admin::theme() .'/images/document.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/documents/'.$file->file .'" target="_blank"><img src="'. vasp_theme() .'/images/document.png' .'" /></a>';
 													}
 												break;
 												case "audio":
 													if(file_exists(WEBROOT . $public_folder . '/audio/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/audio/'.$file->file .'" target="_blank"><img src="'. admin::theme() .'/images/audio.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/audio/'.$file->file .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
 													}
 												break;
 												case "video":
 													if(file_exists(WEBROOT . $public_folder . '/video/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/video/'.$file->file .'" target="_blank"><img src="'. admin::theme() .'/images/video.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/video/'.$file->file .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
 													}
 												break;
 												default:
 													if(file_exists(WEBROOT . $public_folder . '/images/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/images/'.$file->file .'" class="overlay" target="image"><img src="'. admin::theme() .'/images/photo.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/images/'.$file->file .'" class="overlay" target="image"><img src="'. vasp_theme() .'/images/photo.png' .'" /></a>';
 													} else if(file_exists(WEBROOT . $public_folder . '/documents/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/documents/'.$file->file .'" target="_blank"><img src="'. admin::theme() .'/images/document.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/documents/'.$file->file .'" target="_blank"><img src="'. vasp_theme() .'/images/document.png' .'" /></a>';
 													} else if(file_exists(WEBROOT . $public_folder . '/audio/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/audio/'.$file->file .'" target="_blank"><img src="'. admin::theme() .'/images/audio.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/audio/'.$file->file .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
 													} else if(file_exists(WEBROOT . $public_folder . '/video/'.$file->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/video/'.$file->file .'" target="_blank"><img src="'. admin::theme() .'/images/video.png' .'" /></a>';
+														echo '<a href="'. base_url() . $public_folder . '/video/'.$file->file .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
 													}
 												break;
 											}

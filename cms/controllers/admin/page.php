@@ -9,24 +9,14 @@
  */
 class Page extends Vaspasian
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
+	// var $model_name = array('pages', 'recycles');			public function __construct() {		parent::__construct();	}
 	
-	public function index()
-	{
+	public function index() {
 		
 		// Page title
-		$this->view_data['title'] = "Pages";
-
+		$this->view_data['title'] = 'Pages';
 		// Content
-		$this->view_data['page_title'] = "Pages";
-		$this->view_data['page'] = $this->pages->find(1);
-		$this->view_data['children_content'] = $this->children(1, 0, true);
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
-	}
+		$this->view_data['page_title'] = 'Pages';		$this->view_data['page'] = $this->pages->where('id', 1)->get();		$this->view_data['children_content'] = $this->children(1, 0, true);		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');	}
 	
 	// Add part to page
 	public function add_part() 
@@ -53,20 +43,19 @@ class Page extends Vaspasian
 	public function add($id = FALSE)
 	{
 		// Head Variables
-		$this->template->title = "Pages | Create - Edit - Delete";
+		$this->view_data['title'] = "Pages | Create - Edit - Delete";
         //$this->template->javascript = array();
         // Get all pages
-        $allpages = $this->pages->find();
+        // $allpages = $this->pages->get();
         
         // Content Variables
-        $this->template->content = new View('page/create');
-		$this->template->content->page_title = "Page | Add";
+		$this->view_data['page_title'] = "Page | Add";
         if($id == FALSE) $id = 0;
-        $this->template->content->parent_id = $id;
-        $this->template->content->parent = $allpages;
+        $this->view_data['parent_id'] = $id;
+        $this->view_data['parent'] = $this->pages->get();
         
         // Validation
-        $_POST = new Validation($_POST);
+        /*$_POST = new Validation($_POST);
         $_POST->pre_filter('trim',true)
               ->pre_filter('url::title', 'url');
         
@@ -75,7 +64,7 @@ class Page extends Vaspasian
               ->add_rules('url', 'required');
         
         // Repopulate
-        $this->template->content->form_data = $_POST;
+        $this->template->content->form_data = $_POST;*/
         
         /*if($_POST->validate())
         {
@@ -98,7 +87,7 @@ class Page extends Vaspasian
         }*/
         
         // Errors
-		$this->template->content->form_error = $_POST->errors('page');
+		// $this->template->content->form_error = $_POST->errors('page');
 	}
     
     // Edit - Add new page
@@ -160,14 +149,11 @@ class Page extends Vaspasian
 	// Load Children node
     public function children($parent_id, $level, $return=false)
     {
-        //$pages = $this->load->model('page_model');
-        
-        $expanded_rows = isset($_COOKIE['expanded_rows']) ? explode(',', $_COOKIE['expanded_rows']): array();
+    	// $this->method_autoload = FALSE;    	        $expanded_rows = isset($_COOKIE['expanded_rows']) ? explode(',', $_COOKIE['expanded_rows']): array();
         
         // get all children of the page (parent_id)
-        $my_child = $this->pages->find_all(array('parent_id' => $parent_id));//$this->pages->where('parent_id', $parent_id)->get();
-        $children = array();
-        foreach ($my_child as $index => $child)
+        $my_child = $this->pages->where('parent_id', $parent_id)->get();                $children = array();
+        foreach ($my_child->all as $index => $child)
         {
         	$children[$index] = array(
         								'id' => $child->id,
@@ -182,15 +168,14 @@ class Page extends Vaspasian
                 $children[$index]['children_rows'] = $this->children($child->id, $level+1, true);
         }
         
-        $content = $this->load->view('admin/page/children', array(
-            'children' => $children,
-            'level'    => $level+1,
-		        ), $return);
+        $data['children'] = $children;        $data['level'] = $level + 1;        
+        $content = $this->load->view('admin/page/children', $data, $return);
         
-        if ($return)
+        if ($return) {
             return $content;
-        
-        echo $content;
+        } else {
+        	echo $content;
+	    }
     }
 }
 /* End of file page.php */

@@ -30,7 +30,7 @@ class Vaspasian_Model extends Model
 	 */
 	public static function factory($model = FALSE)
 	{
-		$model = empty($model) ? __CLASS__ : ucfirst($model).'_model';
+		$model = empty($model) ? __CLASS__ : ucfirst($model).'s';
 		return new $model();
 	}
 	

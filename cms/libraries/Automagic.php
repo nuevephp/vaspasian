@@ -15,18 +15,25 @@
 class Automagic extends Controller
 {
     
-    //name of the controller
+    // Define controller class name
     var $name;
-    
-    //$model_name allows to autoload model, if the var is null the NAME_OF_CONTROLLERs 
-    //Model will be loaded automatically (note if it doesn't exist it will generate error...
-    //To disable autoloading of the model, set this var to FALSE in the desired controller...
-    //To autoload another model just put the name in this var, ex: var $model_name = 'My_model'
+
+    /**
+     * Define model names, this allow you to set more than one model in any given controller
+     * these will be autoloaded and if you wish not to use autoloading just set model_name to FALSE
+     * If a model name is not set this will autoload a model called NAME_OF_CONTROLLERs, so your models
+     * should be the same name as controller with s on it.
+     *
+     * @example $model_name = array('model_name1', 'model_name2');
+     *
+     * @var string array
+     */
     var $model_name = array();
     
     //this are vars use for the layout autoloading
     var $layout = TRUE;
     var $master = 'page/master';
+    var $master_view_module = '';
     var $view;
     var $view_data = array();
     var $method_autoload = TRUE;
@@ -44,14 +51,9 @@ class Automagic extends Controller
             {                
                 $this->model_name = array(strtolower($this->name).'s'); 
             }
-            
-			foreach($this->model_name as $model){
-				$this->load->model($model);
-			
-				$model_name = $this->model_name;
-				$this->model_name = $this->$model;
-			}
-        }
+                        if(is_array($this->model_name)) {            	foreach($this->model_name as $model){            		$this->load->model($model);	            		            $model_name = $this->model_name;		            $this->model_name = $this->$model;            	}            }        }
+        
+        if($this->master_view_module === '') $this->master_view_module = current(explode('/', $this->master));
     }
     
     function _remap($method)
@@ -144,13 +146,12 @@ class Automagic extends Controller
         // If using as a layout style
         if($this->layout === TRUE)
         {
-        	
 			$data['content_for_layout'] = $this->load->view($template_uri, $this->view_data, true);
 			if($this->parser !== '') { 
 				// Load CI Template Parser Library
 				$this->load->library('parser');
 				$this->parser->parse($this->master, $data);
-			} else { $this->load->view($this->master, $data); }
+			} else { $this->load->view($this->master, $data, FALSE, $this->master_view_module); }
         }
         else
         {

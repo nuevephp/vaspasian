@@ -13,8 +13,7 @@
  * @date		11 Apr 2009
  */
 class Frontend extends Automagic
-{
-    
+{   
 	function __construct() {
 		parent::__construct();
 		

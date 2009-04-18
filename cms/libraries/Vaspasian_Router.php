@@ -43,6 +43,11 @@ class Vaspasian_Router extends CI_Router
 {
 	public function _validate_request($segments)
 	{
+		(isset($segments[1])) OR $segments[1] = NULL;
+	
+		/* locate the module controller */
+		list($module, $controller) = Router::locate($segments);
+		
 		/* Modification starts */
 		// Does the requested controller exist in the root folder?
 		if (file_exists(APPPATH.'controllers/'.$segments[0].EXT))
@@ -59,10 +64,15 @@ class Vaspasian_Router extends CI_Router
 			
 			if (count($segments) > 0)
 			{
-				// Does the requested controller exist in the sub-folder?
+				// Does the requested controller exist in the application sub-folder?
 				if ( ! file_exists(APPPATH.'controllers/'.$this->fetch_directory().$segments[0].EXT))
 				{
-					show_404($this->fetch_directory().$segments[0]);
+					$module = $segments[0];
+					// Does the requested controller exist in the module sub-folder?
+					if ( ! file_exists(MODBASE.$module.'/controllers/'.$this->fetch_directory().$segments[0].EXT))
+					{
+						show_404(MODBASE.$module.'/controllers/'.$this->fetch_directory().$segments[0]);
+					}
 				}
 			}
 			else
@@ -84,11 +94,11 @@ class Vaspasian_Router extends CI_Router
 		
 		/* Modificatiion Ends */
 	
-		(isset($segments[1])) OR $segments[1] = NULL;
+		// (isset($segments[1])) OR $segments[1] = NULL;
 	
 		/* locate the module controller */
-		list($module, $controller) = Router::locate($segments);
-
+		// list($module, $controller) = Router::locate($segments);
+		
 		/* no controller found */
 		($module === FALSE) AND show_404($controller);
 		
@@ -128,6 +138,17 @@ class Router
 				
 			/* a module controller? */
 			return array($module, $module);
+		}
+		
+		if ($module AND is_dir(MODBASE.$controller)) {
+			// ($controller == NULL) AND $controller = $module;
+			
+			/* a module sub-controller? */
+			if(is_file(MODBASE.$controller.'/controllers/'.$module.'/'.$controller.EXT))			
+				return array($controller, $controller);
+				
+			/* a module controller? */
+			return array($controller, $controller);
 		}
 		
 		/* an application controller? */

@@ -21,13 +21,13 @@
 							<td class="status pad"></td>
 							<td class="modify pad">
 								<a href="<?php echo site_url('admin/page/add/'.$page->id); ?>">
-									<img src="<?php echo admin::theme(); ?>/images/create.png" width="16" height="16" alt="Create" />
+									<img src="<?php echo vasp_theme(); ?>/images/create.png" width="16" height="16" alt="Create" />
 								</a>
 								<a href="<?php echo site_url('admin/page/edit/'.$page->id); ?>">
-									<img src="<?php echo admin::theme(); ?>/images/pencil.png" width="16" height="16" alt="Edit" />
+									<img src="<?php echo vasp_theme(); ?>/images/pencil.png" width="16" height="16" alt="Edit" />
 								</a>
 								<a href="<?php echo site_url('admin/page/del/'.$page->id); ?>">
-									<img src="<?php echo admin::theme(); ?>/images/delete.png" width="16" height="16" alt="Delete" />
+									<img src="<?php echo vasp_theme(); ?>/images/delete.png" width="16" height="16" alt="Delete" />
 								</a>
 							</td>
 						</tr>
@@ -38,5 +38,5 @@
 					</tbody>
 				</table>
 			<?php } else { ?>
-				<div id="page_info" class="name">Please add a <a href="<?php //echo site_url('admin/products/create'); ?>">new product</a> to start</div>
+				<div id="page_info" class="name">Please add a <a href="<?php echo site_url('admin/page/add'); ?>">new page</a> to start</div>
 			<?php } ?>

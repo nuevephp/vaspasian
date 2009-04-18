@@ -92,6 +92,9 @@ class Modules
 	{
 		/* don't autoload CI_ or MY_ prefixed classes */
 		if (strstr($class, 'CI_') OR strstr($class, 'MY_')) return;
+		
+		// Change class name to lowercase
+		$class = strtolower($class);
 			
 		if(is_file($location = APPPATH.'libraries/'.$class.EXT)) {
 			include_once $location;
@@ -102,27 +105,10 @@ class Modules
 			include_once $location;
 		}
 		
-		/**
-		 * Modified Modules Config
-		 *
-		 * Autoload modules controllers.
-		 */
-		$handle = opendir(MODBASE);
-		
-		if ($handle) {
-		    while (false !== ($module = readdir($handle))) {
-		        if ($module != "." && $module != ".." && $module != ".svn") {
-		        	if(is_file($location = MODBASE.$module.'/controllers/'.strtolower($class).EXT)) {
-						include_once $location;
-					}
-		        }
-		    }
-		    closedir($handle);
-		}
-		/* autoload modules controllers */	
-		/*if(is_file($location = MODBASE.'controllers/'.$class.EXT)) {
+		/* autoload modules controllers. */
+		if(is_file($location = MODBASE.$class.'/controllers/'.$class.EXT)) {
 			include_once $location;
-		}*/
+		}
 	}
 
 	/** Load a module file **/

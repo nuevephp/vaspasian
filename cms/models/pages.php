@@ -10,13 +10,15 @@
  * @author  	Andrew Smith
  * @link    	http://www.silentworks.co.uk
  * @copyright	Copyright (c) 2009, Silent Works.
- * @date		16 Apr 2009
+ * @date		17 Apr 2009
  */
-class Pages extends Vaspasian_Model
-{	
-	public function has_children($id) {
-		return $this->db->where('parent_id', $id)->count_all_results($this->table);
-	}
+class Pages extends DataMapper
+{
+	// Has Children
+    public function has_children($id)
+    {
+        return (boolean) $this->db->where('parent_id', (int)$id)->count_all_results(strtolower(get_class($this)));
+    }
 }
 /* End of file Pages.php */
 /* Location: ./cms/models/Pages.php */
