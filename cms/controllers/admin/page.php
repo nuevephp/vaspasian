@@ -9,14 +9,18 @@
  */
 class Page extends Vaspasian
 {
-	// var $model_name = array('pages', 'recycles');			public function __construct() {		parent::__construct();	}
-	
+	// var $model_name = array('pages', 'recycles');
 	public function index() {
 		
 		// Page title
 		$this->view_data['title'] = 'Pages';
 		// Content
-		$this->view_data['page_title'] = 'Pages';		$this->view_data['page'] = $this->pages->where('id', 1)->get();		$this->view_data['children_content'] = $this->children(1, 0, true);		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');	}
+		$this->view_data['page_title'] = 'Pages';
+        $this->view_data['page'] = $this->pages->where('id', 1)->get();
+        $this->view_data['children_content'] = $this->children(1, 0, true);
+        $this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
+        $this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+    }
 	
 	// Add part to page
 	public function add_part() 
@@ -149,10 +153,12 @@ class Page extends Vaspasian
 	// Load Children node
     public function children($parent_id, $level, $return=false)
     {
-    	// $this->method_autoload = FALSE;    	        $expanded_rows = isset($_COOKIE['expanded_rows']) ? explode(',', $_COOKIE['expanded_rows']): array();
+    	// $this->method_autoload = FALSE;
+        $expanded_rows = isset($_COOKIE['expanded_rows']) ? explode(',', $_COOKIE['expanded_rows']): array();
         
         // get all children of the page (parent_id)
-        $my_child = $this->pages->where('parent_id', $parent_id)->get();                $children = array();
+        $my_child = $this->pages->where('parent_id', $parent_id)->get();
+        $children = array();
         foreach ($my_child->all as $index => $child)
         {
         	$children[$index] = array(

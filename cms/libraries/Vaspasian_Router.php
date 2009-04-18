@@ -67,12 +67,7 @@ class Vaspasian_Router extends CI_Router
 				// Does the requested controller exist in the application sub-folder?
 				if ( ! file_exists(APPPATH.'controllers/'.$this->fetch_directory().$segments[0].EXT))
 				{
-					$module = $segments[0];
-					// Does the requested controller exist in the module sub-folder?
-					if ( ! file_exists(MODBASE.$module.'/controllers/'.$this->fetch_directory().$segments[0].EXT))
-					{
-						show_404(MODBASE.$module.'/controllers/'.$this->fetch_directory().$segments[0]);
-					}
+					show_404(APPPATH.'controllers/'.$this->fetch_directory().$segments[0]);
 				}
 			}
 			else
@@ -138,17 +133,6 @@ class Router
 				
 			/* a module controller? */
 			return array($module, $module);
-		}
-		
-		if ($module AND is_dir(MODBASE.$controller)) {
-			// ($controller == NULL) AND $controller = $module;
-			
-			/* a module sub-controller? */
-			if(is_file(MODBASE.$controller.'/controllers/'.$module.'/'.$controller.EXT))			
-				return array($controller, $controller);
-				
-			/* a module controller? */
-			return array($controller, $controller);
 		}
 		
 		/* an application controller? */

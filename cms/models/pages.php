@@ -12,7 +12,7 @@
  * @copyright	Copyright (c) 2009, Silent Works.
  * @date		17 Apr 2009
  */
-class Pages extends DataMapper
+class Pages extends Vaspasian_Model
 {
 	// Has Children
     public function has_children($id)
