@@ -409,6 +409,7 @@ class Loader
 		if($module !== '') $this->_module = $module;
 		
 		list($path, $view) = modules::find($view, $this->_module, 'views/');
+        
 		self::$loader->_ci_view_path = $path;
 		
 		return self::$loader->_ci_load(array('_ci_view' => $view, '_ci_vars' => self::$loader->_ci_object_to_array($vars), '_ci_return' => $return));

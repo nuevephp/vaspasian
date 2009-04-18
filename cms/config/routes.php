@@ -40,6 +40,12 @@
 |
 */
 
+$route['admin/([a-zA-Z_-]+)/(:any)'] = "$1/admin_$1/$2";
+$route['admin/login'] = "admin/login";
+$route['admin/logout'] = "admin/logout";
+$route['admin/([a-zA-Z_-]+)'] = "$1/admin_$1/index";
+$route['admin'] = "admin";
+
 $route['default_controller'] = "page";
 $route['scaffolding_trigger'] = "";
 

@@ -11,6 +11,7 @@
 class Vaspasian extends Automagic
 {
 	var $master = 'admin/master/simplelook';
+	var $model_name = array('recycles');
 	
 	function __construct() {
 		parent::__construct();
@@ -38,16 +39,14 @@ class Vaspasian extends Automagic
 	/**
 	 * Send information to Recycle Bin
 	 */
-	public static function recycle($name, $data, $type) {
-		$recycle = new Recycles();
-		
+	public function recycle($name, $data, $type) {
 		// Store information into Recycle Bin Table
-		$recycle->name = $name;
-		$recycle->data = 'this info';//serialize($data);
-		$recycle->table = $type;
-		$recycle->date = date('Y-m-d H:i:s');
+		$recycle['name'] = $name;
+		$recycle['data'] = serialize($data);
+		$recycle['table'] = $type;
+		$recycle['date'] = date('Y-m-d H:i:s');
 		
-		return $recycle->save();
+		return $this->recycles->save($recycle);
 	}
 }
 /* End of file Vaspasian.php */
