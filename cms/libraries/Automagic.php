@@ -51,7 +51,14 @@ class Automagic extends Controller
             {                
                 $this->model_name = array(strtolower($this->name).'s'); 
             }
-                        if(is_array($this->model_name)) {            	foreach($this->model_name as $model){            		$this->load->model($model);	            		            $model_name = $this->model_name;		            $this->model_name = $this->$model;            	}            }        }
+            if(is_array($this->model_name)) {
+                foreach($this->model_name as $model){
+                    $this->load->model($model);
+                    $model_name = $this->model_name;
+                    $this->model_name = $this->$model;
+                }
+            }
+          }
         
         if($this->master_view_module === '') $this->master_view_module = current(explode('/', $this->master));
     }
