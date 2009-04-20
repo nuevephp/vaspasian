@@ -13,8 +13,6 @@
  */
 class Page extends Frontend
 {
-	var $master = 'page/master';
-	
 	// var $layout = FALSE;
 	var $model_name = FALSE;
 	
@@ -25,7 +23,7 @@ class Page extends Frontend
 	}
 	
 	public function index() {
-		
+		$this->templex->render('page/index');
 	}
 	
 	public static function cmsname() {
