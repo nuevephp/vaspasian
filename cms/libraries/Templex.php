@@ -3,49 +3,30 @@
  * Created on 23 Dec 2008
  * by Andrew Smith <a.smith@silentworks.co.uk>
  */
-
-/**
- *
- */
 class Templex
 {   
 	// Default template file
-	public $template;
+	var $master;
+    var $master_view_module = '';
 	
 	// Template data
 	var $data = array();
 	
-	/**
-	 *
-	 */
-	public function __construct($template = 'template')
+	public function __construct($view = '')
 	{	
 		$this->CI =& get_instance();
 		
-		$this->template($template);
+		if($view !== '') $this->template($view);
+		if($this->master_view_module === '') $this->master_view_module = current(explode('/', $this->master));
 		
 		log_message('debug', "Templex Class Initialized");
 	}
 	
-	/**
-	 * Set the template to load
-	 */
-	public function template($template)
-	{
-		$this->template = $template;
-	}
-	
-	/**
-	 * Set variable name and value
-	 */
 	public function set($name, $value)
 	{
 		$this->data[$name] = $value;
 	}
 	
-	/**
-	 * Manually render view
-	 */
 	public function render($view = '' , $view_data = FALSE, $parser = '', $return = FALSE, $output = FALSE)
 	{
 		switch ($parser) {
@@ -53,15 +34,15 @@ class Templex
 				// Load CI Template Parser Library
 				$this->CI->load->library('parser');
 				if($view !== ''){
-					$this->set('content_for_layout', $this->CI->parser->parse($view, $view_data, TRUE));			
+					$this->set('content_for_layout', $this->CI->parser->parse($view . VIEW_EXT, $view_data, TRUE));			
 				}
-				$view = $this->CI->parser->parse($this->template, $this->data, $return);
+				$view = $this->CI->parser->parse($this->master . VIEW_EXT, $this->data, $return, $this->master_view_module);
 			break;
 			default:
 				if($view !== ''){
-					$this->set('content_for_layout', $this->CI->load->view($view, $view_data, TRUE));			
+					$this->set('content_for_layout', $this->CI->load->view($view . VIEW_EXT, $view_data, TRUE));			
 				}
-				$view = $this->CI->load->view($this->template, $this->data, $return);
+				$view = $this->CI->load->view($this->master . VIEW_EXT, $this->data, $return, $this->master_view_module);
 			break;
 		}
 		

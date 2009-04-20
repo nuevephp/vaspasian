@@ -12,7 +12,7 @@
  * @copyright	Copyright (c) 2009, Silent Works.
  * @date		11 Apr 2009
  */
-class Frontend extends Automagic
+class Frontend extends Controller
 {   
 	function __construct() {
 		parent::__construct();
@@ -21,15 +21,17 @@ class Frontend extends Automagic
 		// $this->output->enable_profiler(TRUE);
 		
 		// Load Models
-		/*$this->load->model('page_model');
-		$this->load->model('page_part_model');
-		$this->load->model('layout_model');
-		$this->load->model('snippet_model');
+		$this->load->model('pages');
 		
 		// Load Helpers
-		$this->load->helper('page');*/
+		$this->load->helper('page');
 		
 		// Load Plugins
+		
+		// Setup Templex
+		$this->templex = new Templex;
+		$this->templex->master_view_module = 'themes';
+		$this->templex->master = 'flash_web/index';
 		
 		
 		// Build Routes
