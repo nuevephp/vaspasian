@@ -117,10 +117,9 @@ class Admin_Recycle extends Vaspasian
 		
 		if($destroyed)
 		{
-			$this->session->set_flashdata('name', $recycle->name);
 			if($this->recycles->delete($recycle->id))
 			{
-				$this->session->set_flashdata('success', 'You have successfully deleted "'.$this->session->flashdata('name').' permanently".');
+				$this->session->set_flashdata('success', 'You have successfully deleted "'.$recycle->name.'" permanently.');
 				redirect('admin/recycle');
 			}
 		}

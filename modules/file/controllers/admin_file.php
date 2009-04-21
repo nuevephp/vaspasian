@@ -13,7 +13,7 @@
  */
 class Admin_File extends Vaspasian
 {
-	var $model_name = array('files');
+	var $model_name = array('files', 'recycles');
 	
 	public function __construct()
 	{
@@ -107,9 +107,6 @@ class Admin_File extends Vaspasian
 	// Images
 	public function images()
 	{
-		// Define view
-		$this->view = 'admin/file/index';
-		
 		if ($this->form_validation->run('file') != FALSE)
 		{
 			// Validation
@@ -300,7 +297,7 @@ class Admin_File extends Vaspasian
         $file = $this->files->find($id);
 
 		// Store information into Recycle Bin Table
-		$this->recycle($file->name, $file, 'files');
+		$this->recycles->recycle($file->name, $file, 'files');
 		
 		if($this->files->delete($id))
 		{

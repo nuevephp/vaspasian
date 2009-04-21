@@ -2,22 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Flash Web</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+<title>Flash Web | <?php echo $page_title; ?></title>
+<link href="<?php echo THEME_PATH; ?>flash_web/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	<!-- top navigation start -->
 	<div id="topNav">
-		<a href="index.html" title="Flash Web"><img src="images/logo_text.gif" alt="Flash Web" width="179" height="35" border="0" /></a>
+		<a href="<?php echo site_url(); ?>" title="Flash Web"><img src="<?php echo THEME_PATH; ?>flash_web/images/logo_text.gif" alt="Flash Web" width="179" height="35" border="0" /></a>
 		<ul>
-			<li><a href="#" title="Home" class="hover">Home</a></li>
-			<li><a href="#" title="About us">About Us</a></li>
-			<li><a href="#" title="Support">Support</a></li>
-			<li><a href="#" title="Works">Works</a></li>
-			<li><a href="#" title="Ideas">Ideas</a></li>
-			<li><a href="#" title="Profits">Profits</a></li>
-			<li><a href="#" title="Contact">Contact</a></li>
+			<li><a href="<?php echo site_url(); ?>" title="Home" <?php if(current_url() === site_url()) echo 'class="hover"'; ?>>Home</a></li>
+			<li><a href="<?php echo site_url('about'); ?>" title="About us" <?php if(current_url() === site_url('about')) echo 'class="hover"'; ?>>About Us</a></li>
+			<li><a href="<?php echo site_url(); ?>" title="Support">Support</a></li>
+			<li><a href="<?php echo site_url(); ?>" title="Works">Works</a></li>
+			<li><a href="<?php echo site_url(); ?>" title="Ideas">Ideas</a></li>
+			<li><a href="<?php echo site_url(); ?>" title="Profits">Profits</a></li>
+			<li><a href="<?php echo site_url(); ?>" title="Contact">Contact</a></li>
 		</ul>
 	</div>
 	<!-- top navigation end -->
@@ -29,14 +29,14 @@
 		<!-- body pannel start -->
 		<div id="bodyPannel">
 			<!-- login form start-->
-			<form method="post" action="#" name="login" class="search">
+			<!-- <form method="post" action="#" name="login" class="search">
 			  <h2>members <span>area</span></h2>
 			  <label>your name</label><input name="name" type="text" id="name" />
 			  <label>password</label><input name="password" type="password" id="password" />
 			  <p>remember my password</p><input name="" type="checkbox" value="" class="check" /><input name="login" type="submit" id="login" value="login" title="Login" class="submit" />
-			</form>
+			</form> -->
 			<!-- login form end-->
-		  <div id="eventLink">
+		  <!-- <div id="eventLink">
 				<h2>events <span>links</span></h2>
 				<ul>
 					<li><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscingelit. </a></li>
@@ -45,9 +45,9 @@
 					<li><a href="#">Eorem ipsum dolor sit amet,</a></li>
 				</ul>
 			<a href="#" title="read more" class="more">read more</a>
-			</div><br class="spacer" />
+			</div><br class="spacer" /> -->
 		  <div id="midle">
-			  <h2>flash web - <span>about us</span></h2>
+			  <h2>flash web - <span><?php echo $page_title; ?></span></h2>
 				<p>Flash Web is a free, tableless, W3C-compliant web design layout by Template World. This template has been tested and proven compatible with all major browser environments and operating systems. You are free to modify the design to suit your tastes in any way you like.</p>
 				<p>We only ask you to not remove "Design by Template World" and the link http://www.templateworld.com from the footer of the template.</p>
 			<a href="#" title="read more" class="more">read more</a><br class="spacer" />

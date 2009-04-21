@@ -23,6 +23,30 @@ class Page extends Frontend
 	}
 	
 	public function index() {
+		if ( $this->uri->segment(1) )
+		{
+			$num = 1;
+			$built_uri = '';
+			
+			while ( $segment = $this->uri->segment($num))
+			{
+				$built_uri .= $segment.'/';
+				$num++;
+			}
+			
+			$new_length = strlen($built_uri) - 1;
+			$built_uri = substr($built_uri, 0, $new_length);
+		}
+		else
+		{
+			$built_uri = 'home';
+		}
+		
+		$content = $this->pages->find_page($built_uri);
+		
+		$this->templex->set('page_title', $content->title);
+		$this->templex->set('slug', $content->slug);
+		
 		$this->templex->render('page/index');
 	}
 	

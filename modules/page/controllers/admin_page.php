@@ -178,7 +178,7 @@ class Admin_Page extends Vaspasian
         }
         
         $data['children'] = $children;        $data['level'] = $level + 1;        
-        $content = $this->load->view('admin/page/children', $data, $return);
+        $content = $this->load->view('admin_page/children', $data, $return);
         
         if ($return) {
             return $content;

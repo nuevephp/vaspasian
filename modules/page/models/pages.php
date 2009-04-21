@@ -19,6 +19,24 @@ class Pages extends Vaspasian_Model
     {
         return (boolean) $this->db->where('parent_id', (int)$id)->count_all_results(strtolower(get_class($this)));
     }
+
+    function find_page_id($page)
+    {
+	    $query = $this->db->from($this->table)->where("slug", $page)->get()->row();
+	    return (count($query) > 0) ? $query->id : 0;
+	}
+
+    function find_page($page)
+    {
+	    if (isset($page))
+	    {
+		    $query = $this->db->from($this->table)->where(array("slug" => $page))->limit("1")->get()->row();
+	    } else {
+		    $query = $this->db->from($this->table)->where("slug", $page["parent"])->limit("1")->get()->row();
+	    }
+	    /* Check to see if the page exists */
+	    return (count($query) > 0) ? $query : false;
+    }
 }
 /* End of file Pages.php */
 /* Location: ./cms/models/Pages.php */
