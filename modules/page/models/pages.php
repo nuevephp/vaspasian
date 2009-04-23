@@ -28,12 +28,14 @@ class Pages extends Vaspasian_Model
 
     function find_page($page)
     {
-	    if (isset($page))
+	    if (isset($page['child']))
 	    {
-		    $query = $this->db->from($this->table)->where(array("slug" => $page))->limit("1")->get()->row();
+		    $child_id = $this->find_page_id($page['parent']);
+		    $query = $this->db->from($this->table)->where(array("slug" => $page['child']))->limit("1")->get()->row();
 	    } else {
-		    $query = $this->db->from($this->table)->where("slug", $page["parent"])->limit("1")->get()->row();
+		    $query = $this->db->from($this->table)->where("slug", $page['parent'])->limit("1")->get()->row();
 	    }
+		
 	    /* Check to see if the page exists */
 	    return (count($query) > 0) ? $query : false;
     }

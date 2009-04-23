@@ -3,3 +3,4 @@
 $route["default_controller"] = "page";
 $route["home"] = "page";
 $route["about"] = "page";
+$route["about/([a-zA-Z_-]+)"] = "page/$1";

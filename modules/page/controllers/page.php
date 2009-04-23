@@ -12,17 +12,13 @@
  * @date		25 Mar 2009
  */
 class Page extends Frontend
-{
-	// var $layout = FALSE;
-	var $model_name = FALSE;
-	
+{	
 	public function __construct() {
 		parent::__construct();
-		
-		$this->view_data['cmsname'] = $this->cmsname();
 	}
 	
 	public function index() {
+		$uri_slug = array();
 		if ( $this->uri->segment(1) )
 		{
 			$num = 1;
@@ -35,23 +31,28 @@ class Page extends Frontend
 			}
 			
 			$new_length = strlen($built_uri) - 1;
-			$built_uri = substr($built_uri, 0, $new_length);
+			$new_uri = array_reverse(explode('/', substr($built_uri, 0, $new_length)));
+			
+			if (count($new_uri) > 1) {
+				$uri_slug['parent'] = $new_uri[1];
+				$uri_slug['child'] = $new_uri[0];
+			} else {
+				$uri_slug['parent'] = $new_uri[0];
+			}
 		}
 		else
 		{
-			$built_uri = 'home';
+			$uri_slug['parent'] = 'home';
 		}
 		
-		$content = $this->pages->find_page($built_uri);
-		
-		$this->templex->set('page_title', $content->title);
-		$this->templex->set('slug', $content->slug);
-		
-		$this->templex->render('page/index');
-	}
-	
-	public static function cmsname() {
-		return "Vaspasian CMS";
+		if($content = $this->pages->find_page($uri_slug)) {
+			$this->templex->set('page_title', $content->title);
+			$this->templex->set('slug', $content->slug);
+			$this->templex->set('content', $content->content);
+			$this->templex->render('page/index');
+		} else {
+			show_404();
+		}
 	}
 }
 /* End of file page.php */

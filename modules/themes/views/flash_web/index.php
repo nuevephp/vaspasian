@@ -3,13 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Flash Web | <?php echo $page_title; ?></title>
-<link href="<?php echo THEME_PATH; ?>flash_web/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url() . THEME_PATH; ?>flash_web/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	<!-- top navigation start -->
 	<div id="topNav">
-		<a href="<?php echo site_url(); ?>" title="Flash Web"><img src="<?php echo THEME_PATH; ?>flash_web/images/logo_text.gif" alt="Flash Web" width="179" height="35" border="0" /></a>
+		<a href="<?php echo site_url(); ?>" title="Flash Web"><img src="<?php echo base_url() . THEME_PATH; ?>flash_web/images/logo_text.gif" alt="Flash Web" width="179" height="35" border="0" /></a>
 		<ul>
 			<li><a href="<?php echo site_url(); ?>" title="Home" <?php if(current_url() === site_url()) echo 'class="hover"'; ?>>Home</a></li>
 			<li><a href="<?php echo site_url('about'); ?>" title="About us" <?php if(current_url() === site_url('about')) echo 'class="hover"'; ?>>About Us</a></li>
@@ -48,9 +48,7 @@
 			</div><br class="spacer" /> -->
 		  <div id="midle">
 			  <h2>flash web - <span><?php echo $page_title; ?></span></h2>
-				<p>Flash Web is a free, tableless, W3C-compliant web design layout by Template World. This template has been tested and proven compatible with all major browser environments and operating systems. You are free to modify the design to suit your tastes in any way you like.</p>
-				<p>We only ask you to not remove "Design by Template World" and the link http://www.templateworld.com from the footer of the template.</p>
-			<a href="#" title="read more" class="more">read more</a><br class="spacer" />
+				<?php echo $content; ?>
 			</div>
 			<div id="colorBg">
 				<div id="futurePlans">
