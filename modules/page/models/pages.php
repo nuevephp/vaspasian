@@ -17,7 +17,7 @@ class Pages extends Vaspasian_Model
 	// Has Children
     public function has_children($id)
     {
-        return (boolean) $this->db->where('parent_id', (int)$id)->count_all_results(strtolower(get_class($this)));
+        return (boolean) $this->db->where('parent_id', (int)$id)->count_all_results($this->table);
     }
 
     function find_page_id($page)

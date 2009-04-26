@@ -1,0 +1,106 @@
+/*======================================
+      WELCOME TO THE STYLESHEET
+--------------------------------------      
+     Copyright Mike Crittenden
+      Author: Mike Crittenden
+======================================*/
+ 
+/**************************************\
+|------------COLOR SCHEME--------------|
+|--------------------------------------|
+- black		#000
+- white		#fff
+\**************************************/
+
+
+/**************************************/
+/*              GLOBALS               */
+/**************************************/
+body { font-family: Tahoma, Helvetica, Arial, sans-serif; background: #fff url(../images/.jpg) no-repeat fixed top center; margin: 0; }
+.container hr, .container p, .container ul, .container ol, .container dl, .container pre, .container blockquote, .container address, .container table, .container form { margin-bottom: 0.6em; }
+.container h1 { font-size: 1.2em; }
+.container h2 { font-size: 1em; }
+.container h3 { font-size: 0.8em; }
+.pretty { font-family: georgia,'times new roman',serif, Helvetica, Arial, sans-serif; }
+
+/**************************************/
+/*              HEADER                */
+/**************************************/
+#header { position: relative; height: 120px; /*background: #DDD url(../images/header_bg.jpg) no-repeat scroll top left;*/ }
+#logo	{ position: absolute; top: 20px; left: 10px; }
+
+
+/**************************************/
+/*             NAVIGATION             */
+/**************************************/
+#nav { position: relative; float: left; width: 950px; height: 25px; background-color: #14141d; }
+#nav .nav-left { position: absolute; left: 0; width: 19px; height: 25px; background: #fff url(../images/nav.gif) no-repeat scroll -1px -1px; }
+#nav .nav-right { position: absolute; right: 0; width: 17px; height: 25px; background: #FFFFFF url(../images/nav.gif) no-repeat scroll -26px -1px; }
+#nav ul, #sub-nav ul { float: left; width: 730px; height: 22px; background-color: #ed8917; list-style-type: none; margin-left: 0; padding-left: 220px; }
+#nav ul li { float: left; text-transform: uppercase; margin: -25px 10px 0 0; }
+#nav ul li.current, #nav ul li.section { height: 40px; background: transparent url(../images/nav.gif) no-repeat scroll -1px -26px; }
+#nav ul li.current a, #nav ul li.section a { background: transparent url(../images/nav_current_right.gif) no-repeat scroll right 25px; }
+#nav ul li a { display: block; color: #000; height: 40px; text-align: center; text-decoration: none; padding: 0px 12px 11px; }
+
+#sub-nav { float: left; width: 838px; height: 20px; background-color: #527da7; }
+#sub-nav ul li { float: left; padding: 0 20px; margin-left: 0; background: transparent url(../images/border.gif) no-repeat scroll right center; }
+#sub-nav ul li.last { background: none; }
+#sub-nav ul li a { display: block; color: #fff; text-decoration: none; padding: 0; }
+
+
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
+#wrapper { float: left; background: #fff url(../images/grey_bg.gif) repeat-x scroll; width: 910px; padding: 0px 20px 10px; }
+#breadcrumbs p 	{ color: #fff; }
+#breadcrumbs p a 	{ color: #fff; padding: 0; }
+#strapline 		{ color: #fff; margin: 12px 0 20px; }
+#strapline span { color: #d4e8d3; }
+#content .intro { color: #fff; }
+#content .intro h1	{ font-weight: normal; text-transform: uppercase; border-bottom: 1px solid #000; margin-top: 8px; }
+#content .welcome	{ color: #fff; }
+#content .module	{ float: left; width: 100%; }
+#content .module h2	{ color: #d4e8d3; }
+#content .module ul	{ list-style-type: none; margin-left: 0; }
+#content .module ul li	{ float: left; width: 205px; margin-left: 0; margin-right: 26px; }
+#content .module ul li h4	{ color: #fff; font-size: 1.0em; margin: 0; }
+#content .module ul li small	{ float: left; color: #464d57; margin-top: -4px; }
+#content .module ul li blockquote	{ color: #464d57; font-style: italic; border: none; padding: 0; }
+#content .module ul li.last	{ margin-right: 0; }
+#latest-posts, #latest-audio { float: left; margin-bottom: 10px; }
+#latest-posts h3, #latest-audio h3 { color: #527da7; font-size: 1.0em; font-weight: bold; text-transform: uppercase; padding-left: 0px; margin-left: 0; }
+#latest-posts .post { float: left; margin: 0 0 15px; }
+#latest-posts .postinfo { float: left; width: 202px; background-color: #e2e1f3; }
+#latest-posts .post-title { float: left; width: 140px; font-size: 1em; margin: 0; padding: 5px 3px 0; }
+#latest-posts .post-title a { color: #9d9c9c; text-decoration: none; font-weight: bold; }
+#latest-posts .post-date 	{ float: left; width: 45px; color: #ED8917; font-size: 2.6em; text-align: center; padding: 10px 5px 3px; }
+#latest-posts .post-date small	{ float: left; width: 100%; color: #9d9c9c; font-size: 0.4em; font-weight: normal; }
+#latest-posts .post-tags { float: left; width: 458px; color: #464d57; margin: 0 5px; border-bottom: 1px solid #ccc; }
+#latest-posts .post-summary { float: left; width: 458px; padding: 0 5px; }
+#latest-posts .post-summary a.read-more { float: right; color: #9d9c9c; text-decoration: none; font-size: 0.9em; font-weight: bold; }
+
+#Form_Form { width: 345px; }
+#Form_Form fieldset { padding: 0 10px; margin: .8em 0; border: none; }
+#Form_Form fieldset .field .text, 
+#Form_Form .field .middleColumn textarea { width: 250px; }
+#Form_Form .field label { float: left; width: 60px; }
+#Form_Form .Actions { padding-left: 70px; }
+#Form_Form .Actions input.action { border: 1px solid; }
+#Form_Form span.required { color: #f00; padding-left: 60px; }
+
+/**************************************/
+/*         SIDEBAR CONTENT            */
+/**************************************/
+#sidebar { float: right; width: 200px; }
+#sidebar.homepage { margin-top: 30px; }
+.box, .WidgetHolder { text-align: left; margin-bottom: 10px; }
+.box .head {}
+.box .head h3, .WidgetHolder h3 { color: #d4e8d3; font-size: 1.1em; padding: 5px 0px; margin: 0; }
+.box .body { color: #fff; padding: 5px 0px; }
+.box .body ul { color: #464d57;; list-style-type: square; margin-left: 5px; }
+
+/**************************************/
+/*               FOOTER               */
+/**************************************/
+#footer { float: left; width: 950px; margin-top: 15px; }
+#footer p { color: #000; text-align: center; }
