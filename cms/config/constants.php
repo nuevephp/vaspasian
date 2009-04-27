@@ -47,7 +47,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 define('MODPATH', 'modules');
 define('VIEW_EXT', '.php');
-define('THEME_PATH', MODPATH . '/themes/views/');
+define('THEME_PATH', '/themes/');
+// define('THEME_PATH', MODPATH . '/themes/views/');
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

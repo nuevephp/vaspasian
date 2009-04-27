@@ -46,10 +46,10 @@ class Page extends Frontend
 		}
 		
 		if($content = $this->pages->find_page($uri_slug)) {
-			$this->templex->set('page_title', $content->title);
-			$this->templex->set('slug', $content->slug);
-			$this->templex->set('content', $content->content);
-			$this->templex->render('page/index');
+			$this->set('page_title', $content->title);
+			$this->set('slug', $content->slug);
+			$this->set('content', $content->content);
+			$this->render(theme_name() . '/page/index');
 		} else {
 			show_404();
 		}
