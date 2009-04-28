@@ -15,6 +15,8 @@ class Page extends Frontend
 {	
 	public function __construct() {
 		parent::__construct();
+		
+		$this->template['module'] = "page";
 	}
 	
 	public function index() {
@@ -46,10 +48,10 @@ class Page extends Frontend
 		}
 		
 		if($content = $this->pages->find_page($uri_slug)) {
-			$this->set('page_title', $content->title);
-			$this->set('slug', $content->slug);
-			$this->set('content', $content->content);
-			$this->render(theme_name() . '/page/index');
+			$this->template['page_title'] = $content->title;
+			$this->template['slug'] = $content->slug;
+			$this->template['content'] = $content->content;
+			$this->layout->load($this->template, 'page/index');
 		} else {
 			show_404();
 		}
