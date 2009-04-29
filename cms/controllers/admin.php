@@ -17,13 +17,16 @@ class Admin extends Controller
 	public function __construct() {
 		parent::__construct();
 		
-		// Setup Templex
-		$this->templex = new Templex;
-		$this->templex->master = 'master/simplelook';
+		// Load Helper
+		$this->load->helper('admin');
+		
+		// Set module name
+		$this->template['module'] = 'admin';
 	}
 	
 	public function index() {
-		
+		$this->template['page_title'] = 'Dashboard';
+		$this->layout->load($this->template,'frontdesk/main');
 	}
 }
 /* End of file admin.php */

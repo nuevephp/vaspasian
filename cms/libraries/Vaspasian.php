@@ -8,14 +8,10 @@
  * Vaspasian Master Controller
  * Loads all settings
  */
-class Vaspasian extends Automagic
+class Vaspasian extends Controller
 {
-	var $master = 'admin/master/simplelook';
-	var $model_name = array('recycles');
-	
 	function __construct() {
 		parent::__construct();
-		
 		// Profiler
 		// $this->output->enable_profiler(TRUE);
 		
@@ -26,9 +22,9 @@ class Vaspasian extends Automagic
 		$this->load->helper('admin');
 		
 		// Set Master view variables
-		$this->view_data['site_name'] = 'Vaspasian';
-		$this->view_data['system_name'] = 'Vaspasian'; // System Name
-		$this->view_data['system_version'] = $this->config->item('vasp_version'); // System Version
+		$this->template['site_name'] = 'Vaspasian';
+		$this->template['system_name'] = 'Vaspasian'; // System Name
+		$this->template['system_version'] = $this->config->item('vasp_version'); // System Version
 		
 		// System Configurations
 		define('WEBROOT', $this->config->item('webroot')); // Set website root

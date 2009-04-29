@@ -12,18 +12,23 @@
  *
  */
 class Admin_File extends Vaspasian
-{
-	var $model_name = array('files', 'recycles');
-	
-	public function __construct()
-	{
+{	
+	public function __construct() {
 	    parent::__construct();
+
+	    // Load Models
+	    $this->load->model('files');
+	    $this->load->model('recycles');
 
 		// Load Library
 		$this->load->library('form_validation');
 
 		// Get last segment of uri
 		$this->last_seg = $this->uri->segment(3);
+		
+		// Set mode and module name
+	    $this->template['admin'] = true;
+	    $this->template['module'] = 'file';
 
         // Load the view file
         $this->view = 'admin_file/index';
@@ -89,19 +94,21 @@ class Admin_File extends Vaspasian
 		}
 		
 	    // Page title
-		$this->view_data['title'] = 'File';
+		$this->template['title'] = 'File';
 		
 		// Load Javascript
 		$js = array('/shared/js/lib/shadowbox-2.0.js');
-		$this->view_data['javascript'] = $js;
+		$this->template['javascript'] = $js;
 
 		// Content
-		$this->view_data['page_title'] = "File";
-		$this->view_data['type_url'] = $this->last_seg;
-		$this->view_data['files'] = $this->files->find_all();
-		$this->view_data['public_folder'] = $this->config->item('public_folder');
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = "File";
+		$this->template['type_url'] = $this->last_seg;
+		$this->template['files'] = $this->files->find_all();
+		$this->template['public_folder'] = $this->config->item('public_folder');
+		$this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		
+		$this->layout->load($this->template, $this->view);
 	}
 
 	// Images
@@ -146,15 +153,17 @@ class Admin_File extends Vaspasian
 		}
 		 
 		// Page title
-		$this->view_data['title'] = 'File';
+		$this->template['title'] = 'File';
 
 		// Content
-		$this->view_data['page_title'] = "File | Images";
-		$this->view_data['type_url'] = $this->last_seg;
-		$this->view_data['files'] = $this->files->find_all(array('type' => 'images'));
-		$this->view_data['public_folder'] = $this->config->item('public_folder');
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = "File | Images";
+		$this->template['type_url'] = $this->last_seg;
+		$this->template['files'] = $this->files->find_all(array('type' => 'images'));
+		$this->template['public_folder'] = $this->config->item('public_folder');
+		$this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		
+		$this->layout->load($this->template, $this->view);
 	}
 
 	// Documents
@@ -186,15 +195,17 @@ class Admin_File extends Vaspasian
 		}
 		 
 		// Page title
-		$this->view_data['title'] = 'File';
+		$this->template['title'] = 'File';
 
 		// Content
-		$this->view_data['page_title'] = "File | Documents";
-		$this->view_data['type_url'] = $this->last_seg;
-		$this->view_data['files'] = $this->files->find_all(array('type' => 'documents'));
-		$this->view_data['public_folder'] = $this->config->item('public_folder');
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = "File | Documents";
+		$this->template['type_url'] = $this->last_seg;
+		$this->template['files'] = $this->files->find_all(array('type' => 'documents'));
+		$this->template['public_folder'] = $this->config->item('public_folder');
+		$this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		
+		$this->layout->load($this->template, $this->view);
 	}
 
 	// Audio
@@ -226,15 +237,17 @@ class Admin_File extends Vaspasian
 		}
 		 
 		// Page title
-		$this->view_data['title'] = 'File';
+		$this->template['title'] = 'File';
 
 		// Content
-		$this->view_data['page_title'] = 'File | Audio';
-		$this->view_data['type_url'] = $this->last_seg;
-		$this->view_data['files'] = $this->files->find_all(array('type' => 'audio'));
-		$this->view_data['public_folder'] = $this->config->item('public_folder');
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = 'File | Audio';
+		$this->template['type_url'] = $this->last_seg;
+		$this->template['files'] = $this->files->find_all(array('type' => 'audio'));
+		$this->template['public_folder'] = $this->config->item('public_folder');
+		$this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		
+		$this->layout->load($this->template, $this->view);
 	}
 
 	// Video
@@ -266,15 +279,17 @@ class Admin_File extends Vaspasian
 		}
 		 
 		// Page title
-		$this->view_data['title'] = 'File';
+		$this->template['title'] = 'File';
 
 		// Content
-		$this->view_data['page_title'] = 'File | Video';
-		$this->view_data['type_url'] = $this->last_seg;
-		$this->view_data['files'] = $this->files->find_all(array('type' => 'video'));
-		$this->view_data['public_folder'] = $this->config->item('public_folder');
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = 'File | Video';
+		$this->template['type_url'] = $this->last_seg;
+		$this->template['files'] = $this->files->find_all(array('type' => 'video'));
+		$this->template['public_folder'] = $this->config->item('public_folder');
+		$this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		
+		$this->layout->load($this->template, $this->view);
 	}
 
 	// Delete Confirmation message
@@ -297,7 +312,7 @@ class Admin_File extends Vaspasian
         $file = $this->files->find($id);
 
 		// Store information into Recycle Bin Table
-		$this->recycles->recycle($file->name, $file, 'files');
+		$this->recycle($file->name, $file, 'files');
 		
 		if($this->files->delete($id))
 		{

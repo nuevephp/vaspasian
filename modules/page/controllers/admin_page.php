@@ -9,20 +9,31 @@
  */
 class Admin_Page extends Vaspasian
 {
-	var $model_name = array('pages', 'recycles');
+	public function __construct() {
+		parent::__construct();
+		
+		// Load Model
+		$this->load->model('pages');
+		
+		// Set mode and module name
+		$this->template['admin']  = true;
+		$this->template['module'] = 'page';
+	}
     
 	public function index() {
 		
 		// Page title
-		$this->view_data['title'] = 'Pages';
+		$this->template['title'] = 'Pages';
 		// Content
-		$this->view_data['page_title'] = 'Pages';
-        $this->view_data['page'] = $this->pages->find(1);
-        $this->view_data['children_content'] = $this->children(1, 0, true);
-        $this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-        $this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = 'Pages';
+        $this->template['page'] = $this->pages->find(1);
+        $this->template['children_content'] = $this->children(1, 0, true);
+        $this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+        $this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
 
-        $this->view = 'admin_page/index';
+        $view = 'admin_page/index';
+        
+        $this->layout->load($this->template, $view);
     }
 	
 	// Add part to page

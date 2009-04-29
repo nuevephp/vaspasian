@@ -2,8 +2,9 @@
 	<span class="nav-left"></span>
 	<span class="nav-right"></span>
 	<ul>
-		<% control Menu(1) %>	  
+		<?php //vasp_navi(); ?>
+		<?php //foreach (vasp_navi() as $nav): ?>
 			<li class="$LinkingMode"><a href="$Link" title="Go to the $Title.XML page"><span>$MenuTitle.XML</span></a></li>
-		<% end_control %>
+		<?php //endforeach ?>
 	</ul>
 </div>

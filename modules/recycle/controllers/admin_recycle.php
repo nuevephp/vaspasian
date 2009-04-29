@@ -6,10 +6,15 @@
  */
 class Admin_Recycle extends Vaspasian
 {
-    var $model_name = array('recycles');
-    
 	public function __construct() {
 		parent::__construct();
+		
+		// Load Model
+		$this->load->model('recycles');
+		
+		// Set mode and module name
+		$this->template['admin'] = 'true';
+		$this->template['module'] = 'recycle';
 
         // Load the view file
         $this->view = 'admin_recycle/index';
@@ -18,14 +23,16 @@ class Admin_Recycle extends Vaspasian
 	// Default
 	public function index() {
 		// Page title
-		$this->view_data['title'] = 'Recycle Bin';
+		$this->template['title'] = 'Recycle Bin';
 
 		// Content
-		$this->view_data['page_title'] = 'Recycle Bin';
-		$this->view_data['recycled'] = $this->recycles->find_all();
-		$this->view_data['public_folder'] = $this->config->item('public_folder');
-		$this->view_data['success'] = isset($success) ? $success : $this->session->flashdata('success');
-		$this->view_data['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		$this->template['page_title'] = 'Recycle Bin';
+		$this->template['recycled'] = $this->recycles->find_all();
+		$this->template['public_folder'] = $this->config->item('public_folder');
+		$this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
+		$this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
+		
+		$this->layout->load($this->template, $this->view);
 	}
 
     /**
@@ -55,7 +62,7 @@ class Admin_Recycle extends Vaspasian
 				$data['type'] = $restore->type;
 				if($this->recycles->restore('files', $data)){
 					$restored = $restore->name;
-					$this->recycle->delete($recycle->id);
+					$this->delete($recycle->id);
 				}
 			break;
 			case 'layouts':

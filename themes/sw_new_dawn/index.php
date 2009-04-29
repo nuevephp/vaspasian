@@ -27,7 +27,7 @@
 			</div>
 			
 			<!-- Navigation -->
-			<?php //echo $navigation; ?>
+			<?php theme_block('navigation'); ?>
 			<!-- / - Navigation -->
 	
 			<div id="wrapper">

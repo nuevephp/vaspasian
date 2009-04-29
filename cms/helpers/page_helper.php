@@ -1,76 +1,33 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * CodeIgniter
- *
- * An open source application development framework for PHP 4.3.2 or newer
- *
- * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
- * @since		Version 1.0
- * @filesource
- */
 
-// ------------------------------------------------------------------------
-
-/**
- * CodeIgniter URL Helpers
- *
- * @package		CodeIgniter
- * @subpackage	Helpers
- * @category	Helpers
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/helpers/url_helper.html
- */
-
-// ------------------------------------------------------------------------
-
-/**
- * Snippet
- *
- * Create a local URL based on your basepath. Segments can be passed via the
- * first parameter either as a string or an array.
- *
- * @access	public
- * @param	string
- * @return	string
- */
-if ( ! function_exists('snippet'))
+if ( ! function_exists('theme_block'))
 {
-	function snippet($name = '')
+	function theme_block($name = '')
 	{
-		$file = SNIPPET_PATH . $name . '.php';
+		$file = THEME_PATH . theme_name() .'/'. $name . EXT;
 		
 		if(file_exists($file)){
 			include_once($file);
-		} else {
-			$CI =& get_instance();
-		
-			// Load Snippet Model
-			$CI->load->model('snippet_model');
-			$snippets = $CI->snippet_model->find_all();
-		
-			// Load Page Parts into a array
-			foreach($snippets as $snippet)
-			{
-				$data[$snippet->name] = (array)$snippet;
-			}
-			
-			// Create file for the next time it loads
-			if (file_put_contents($file, $data[$name]['content_html']) !== false)
-	        {
-	            chmod($file, FILE_READ_MODE);
-	        }
-	        else
-	        {
-	            $this->session->set_flashdata('error', 'File' . $name . ' has not been created!');
-	        }
-			
-			// Output information from database.
-			eval('?>'.$data[$name]['content_html']);
 		}
+	}
+}
+
+if ( ! function_exists('vasp_navi'))
+{
+	function vasp_navi()
+	{
+		$CI =& get_instance();
+		$pages = $CI->pages->find_all();
+		
+		$nav = array();
+		
+		foreach($pages as $page) {
+			$nav['title'] .= $page->title;
+			$nav['slug'] .= $page->slug;
+			$nav['parent'] .= $page->parent_id;
+		}
+		
+		return $nav;
 	}
 }
 

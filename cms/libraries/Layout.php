@@ -45,8 +45,17 @@ class Layout
 			$template_path = '../../themes/' . theme_name() . '/index';
 		}
 		
-		if($data['module'] !== 'frontend') { $set_view = '../../modules/'. $data['module'] .'/views/'. $data['view']; }
-		else { $set_view = '../../themes/' . theme_name() . '/' . $data['view']; }
+		switch ($data['module']) {
+			case 'admin':
+				$set_view = 'admin/' . $data['view'];
+				break;
+			case 'public':
+				$set_view = '../../themes/' . theme_name() . '/' . $data['view'];
+				break;
+			default:
+				$set_view = '../../modules/'. $data['module'] .'/views/'. $data['view'];
+				break;
+		}
 		
 		$data['content_for_layout'] = $this->CI->load->view($set_view, $data, true);
 		
