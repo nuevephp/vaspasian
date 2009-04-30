@@ -18,7 +18,7 @@ class Frontend extends Controller
 		parent::__construct();
 		
 		// Profiler
-		$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 		
 		// Load Models
 		$this->load->model('pages');

@@ -32,18 +32,12 @@
 	
 			<div id="wrapper">
 				<!-- BreadCrumbs -->
-				<% include BreadCrumbs %>
+				<?php theme_block('components/breadcrumbs'); ?>
 				<!-- / - BreadCrumbs -->
 				
 				<!-- Strapline -->
 				<h1 id="strapline">
-					<% if Questions %>
-						$Questions <% if Answered %><span>$Answered</span><% end_if %>
-					<% else %>
-						<% control Level(1) %>
-							$Questions <% if Answered %><span>$Answered</span><% end_if %>
-						<% end_control %>
-					<% end_if %>
+					Cool Website
 				</h1>
 				<!-- / - Strapline -->
 				
@@ -52,7 +46,7 @@
 			</div>
 			
 			<div id="footer">
-				<% include Footer %>
+				<?php theme_block('components/footer'); ?>
 			</div>
 		</div>
 		

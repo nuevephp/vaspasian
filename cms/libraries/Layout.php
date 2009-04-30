@@ -19,21 +19,7 @@ class Layout
 	}
 	
 	public function load($data, $view)
-	{
-		$breadcrumb = array();
-		
-		if (empty($data['breadcrumb'])) $data['breadcrumb'] = array();
-		
-		if ($data['module'] != 'page')
-		{
-			$breadcrumb[] = array(
-								'title' => ucwords($data['module']),
-								'uri'	=> $data['module']
-							);
-		}
-						
-		$data['breadcrumb'] = array_merge($breadcrumb, $data['breadcrumb']);
-		
+	{	
 		$data['view'] = $view;
 		
 		if ((isset($data['admin']) && $data['admin'] == true) || $data['module'] == 'admin')

@@ -24,13 +24,15 @@ class Admin_Page extends Vaspasian
 		
 		// Page title
 		$this->template['title'] = 'Pages';
+		
 		// Content
 		$this->template['page_title'] = 'Pages';
         $this->template['page'] = $this->pages->find(1);
         $this->template['children_content'] = $this->children(1, 0, true);
         $this->template['success'] = isset($success) ? $success : $this->session->flashdata('success');
         $this->template['error'] = isset($error) ? $error : $this->session->flashdata('error');
-
+        
+        // View to load
         $view = 'admin_page/index';
         
         $this->layout->load($this->template, $view);
@@ -112,22 +114,20 @@ class Admin_Page extends Vaspasian
 	public function edit($id = FALSE)
 	{
 		// Head Variables
-		$this->template->title = "Pages | Create - Edit - Delete";
+		$this->template['title'] = "Pages | Create - Edit - Delete";
         //$this->template->javascript = array();
 		
 		//$roles = new Roles_Model();                                            
                                             
         // Content Variables
-        $this->template->content = new View('page/edit');
-		$this->template->content->page_title = "Page | Edit";
-        $this->template->content->parent_id = $id;
-        $this->template->content->parent = $this->pages->find();
-        $this->template->content->page = $this->pages->find($id);
-		$this->template->content->page_part = $this->page_part->find_by_page_id($id);
+		$this->template['page_title'] = "Page | Edit";
+        $this->template['parent_id'] = $id;
+        $this->template['parent'] = $this->pages->find();
+        $this->template['page'] = $this->pages->find($id);
         //$this->template->content->roles = $roles->find_all(array('id' => array(3,4,5)));
         
         // Validation
-        $_POST = new Validation($_POST);
+        /*$_POST = new Validation($_POST);
         $_POST->pre_filter('trim', true)
               ->pre_filter('url::title', 'url');
         
@@ -136,9 +136,9 @@ class Admin_Page extends Vaspasian
               ->add_rules('url', 'required');
         
         // Repopulate
-        $this->template->content->repopulate = (object)$_POST;
+        // $this->template->content->repopulate = (object)$_POST;
         
-        if($_POST->validate())
+        /*if($_POST->validate())
         {
             $data['id'] = $id;
             $data['meta_key'] = (isset($_POST['keywords']))?$_POST['keywords']:NULL;
@@ -161,7 +161,11 @@ class Admin_Page extends Vaspasian
         }
         
         // Errors
-		$this->template->content->errors = (object)$_POST->errors('page');
+		$this->template->content->errors = (object)$_POST->errors('page');*/
+		
+		$view = 'admin_page/edit';
+        
+        $this->layout->load($this->template, $view);
 	}
 	
 	// Load Children node
@@ -176,19 +180,20 @@ class Admin_Page extends Vaspasian
         foreach ($my_child as $index => $child)
         {
         	$children[$index] = array(
-        								'id' => $child->id,
-        								'title' =>$child->title,
-        								'slug' => $child->slug,
-        								'status_id' => $child->status_id,
-            							'has_children' => $this->pages->has_children($child->id),
-            							'is_expanded' => in_array($child->id, $expanded_rows)
+        								'id' => $child['id'],
+        								'title' => $child['title'],
+        								'slug' => $child['slug'],
+        								'status_id' => $child['status_id'],
+            							'has_children' => $this->pages->has_children($child['id']),
+            							'is_expanded' => in_array($child['id'], $expanded_rows)
         							);
             
             if($children[$index]['is_expanded'])
-                $children[$index]['children_rows'] = $this->children($child->id, $level+1, true);
+                $children[$index]['children_rows'] = $this->children($child['id'], $level+1, true);
         }
         
-        $data['children'] = $children;        $data['level'] = $level + 1;        
+        $data['children'] = $children;
+        $data['level'] = $level + 1;        
         $content = $this->load->view('admin_page/children', $data, $return);
         
         if ($return) {

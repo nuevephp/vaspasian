@@ -14,20 +14,73 @@ if ( ! function_exists('theme_block'))
 
 if ( ! function_exists('vasp_navi'))
 {
-	function vasp_navi()
+	function vasp_navi($selectedclass = 'current')
 	{
 		$CI =& get_instance();
-		$pages = $CI->pages->find_all();
+		$pages = $CI->pages->find_all(array('status_id' => 100));
 		
-		$nav = array();
+		// Initialize variables
+		$navi = array();
+		$i = 1;
 		
-		foreach($pages as $page) {
-			$nav['title'] .= $page->title;
-			$nav['slug'] .= $page->slug;
-			$nav['parent'] .= $page->parent_id;
+		foreach($pages as $index => $page) {
+			// Full Url
+			$full_url = site_url($page['slug']);
+			
+			$navi[$index]['id'] = $page['id'];
+			$navi[$index]['title'] = $page['title'];
+			$navi[$index]['slug'] = $page['slug'];
+			$navi[$index]['url'] = $full_url;
+			$navi[$index]['parent'] = $page['parent_id'];
+			$navi[$index]['cssmode'] = "";
+			
+			$first_item = $i === 1;
+			$current_item = $full_url === current_url();
+			$last_item = $i === (count($pages));
+			
+			if(!$current_item && $first_item) { $navi[$index]['cssmode'] .= "first"; }
+			if($current_item && $first_item) { $navi[$index]['cssmode'] .= "first " . $selectedclass; }
+			if($current_item && $last_item) { $navi[$index]['cssmode'] .= "last " . $selectedclass; }
+			if(!$current_item && $last_item) { $navi[$index]['cssmode'] .= "last"; }
+			if($current_item && !$first_item && !$last_item) { $navi[$index]['cssmode'] .= $selectedclass; }
+			
+			$i++;
 		}
 		
-		return $nav;
+		return $navi;
+	}
+}
+
+if ( ! function_exists('breadcrumbs'))
+{
+	function breadcrumbs()
+	{
+		$CI =& get_instance();
+	    $CI->load->helper('inflector');
+	    
+	    $breadcrumbs = array();
+	
+	    // No crumbs?
+	    if(count($breadcrumbs) == 0) {
+	
+	    	$url_parts = array();
+	    	$segment = $CI->uri->segment_array();
+	    	$last_segment = array_pop($segment);
+	    	foreach($segment as $url_ref) {
+	    		
+	    		// Skip if we already have this breadcrumb and its not admin
+	    		if(in_array($url_ref, $url_parts) or $url_ref == 'admin') continue;
+	
+	    		$url_parts[] = $url_ref;
+	    		$breadcrumbs[] = array('name'=>humanize(str_replace('-', ' ', $url_ref)), 'url'=>implode('/', $url_parts), 'current_page' => FALSE );
+	    	}
+	    	
+	    	$url_parts[] = $last_segment;
+	    	$breadcrumbs[] = array('name'=>humanize(str_replace('-', ' ', $last_segment)), 'url'=>implode('/', $url_parts), 'current_page' => TRUE );
+	
+	    }
+	
+	    return $breadcrumbs;
 	}
 }
 

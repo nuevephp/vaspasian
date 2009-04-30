@@ -48,9 +48,9 @@ class Page extends Frontend
 		}
 		
 		if($content = $this->pages->find_page($uri_slug)) {
-			$this->template['page_title'] = $content->title;
-			$this->template['slug'] = $content->slug;
-			$this->template['content'] = $content->content;
+			$this->template['page_title'] = $content['title'];
+			$this->template['slug'] = $content['slug'];
+			$this->template['content'] = $content['content'];
 			$this->layout->load($this->template, 'page/index');
 		} else {
 			show_404();

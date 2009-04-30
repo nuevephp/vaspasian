@@ -13,20 +13,20 @@
 						</tr>
 					</thead>
 					<tbody class="table-body">
-						<tr id="page_<?php echo $page->id; ?>">
+						<tr id="page_<?php echo $page['id']; ?>">
 							<td class="label pad">
-								<?php echo $page->title; ?>
+								<?php echo $page['title']; ?>
 							</td>
 							<td class="quantity pad"><?php //echo $page->in_menu ? 'Yes' : 'No'; ?></td>
 							<td class="status pad"></td>
 							<td class="modify pad">
-								<a href="<?php echo site_url('admin/page/add/'.$page->id); ?>">
+								<a href="<?php echo site_url('admin/page/add/'.$page['id']); ?>">
 									<img src="<?php echo vasp_theme(); ?>/images/create.png" width="16" height="16" alt="Create" />
 								</a>
-								<a href="<?php echo site_url('admin/page/edit/'.$page->id); ?>">
+								<a href="<?php echo site_url('admin/page/edit/'.$page['id']); ?>">
 									<img src="<?php echo vasp_theme(); ?>/images/pencil.png" width="16" height="16" alt="Edit" />
 								</a>
-								<a href="<?php echo site_url('admin/page/del/'.$page->id); ?>">
+								<a href="<?php echo site_url('admin/page/del/'.$page['id']); ?>">
 									<img src="<?php echo vasp_theme(); ?>/images/delete.png" width="16" height="16" alt="Delete" />
 								</a>
 							</td>

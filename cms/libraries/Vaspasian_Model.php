@@ -55,7 +55,7 @@ class Vaspasian_Model extends Model
 		if($limit !== '')
 			$this->db->limit($limit);
         $query = $this->db->orderby($orderby, $direction)->getwhere($this->table, $where);
-        return $query->row();
+        return $query->row_array();
     }
     
     /**
@@ -74,7 +74,7 @@ class Vaspasian_Model extends Model
 			foreach($where as $key => $value)
 				$this->db->where_in($key, $value);
 
-		return $this->db->orderby($orderby, $direction)->get($this->table)->result();
+		return $this->db->orderby($orderby, $direction)->get($this->table)->result_array();
 	}
 
 	/**

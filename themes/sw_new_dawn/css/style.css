@@ -39,7 +39,7 @@ body { font-family: Tahoma, Helvetica, Arial, sans-serif; background: #fff url(.
 #nav ul, #sub-nav ul { float: left; width: 730px; height: 22px; background-color: #ed8917; list-style-type: none; margin-left: 0; padding-left: 220px; }
 #nav ul li { float: left; text-transform: uppercase; margin: -25px 10px 0 0; }
 #nav ul li.current, #nav ul li.section { height: 40px; background: transparent url(../images/nav.gif) no-repeat scroll -1px -26px; }
-#nav ul li.current a, #nav ul li.section a { background: transparent url(../images/nav_current_right.gif) no-repeat scroll right 25px; }
+#nav ul li.current a, #nav ul li.section a { background: transparent url(../images/nav_current_right.gif) no-repeat scroll right 27px; }
 #nav ul li a { display: block; color: #000; height: 40px; text-align: center; text-decoration: none; padding: 0px 12px 11px; }
 
 #sub-nav { float: left; width: 838px; height: 20px; background-color: #527da7; }
