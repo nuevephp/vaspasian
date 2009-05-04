@@ -8,7 +8,7 @@
                     <li><a href="#general"><span>Content</span></a></li>
 					<li><a href="#meta"><span>Meta data</span></a></li>
                 </ul>
-				<form id="super_form" name="super_form" method="post" action="<?php echo site_url(current_url()); ?>">
+				<form id="super_form" name="super_form" method="post" action="<?php echo site_url(current_url()); ?>" class="smart-form">
 				<div id="general">
 					<p>
                         <label for="type">Type</label>

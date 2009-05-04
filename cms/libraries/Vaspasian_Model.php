@@ -12,13 +12,31 @@ class Vaspasian_Model extends Model
 	// Table name
 	var $table;
 	
-	public function __construct()
+	protected $data = array();
+	
+	public function __construct($where = NULL)
 	{
 		parent::__construct();
 		
 		log_message('debug', "Vaspasian_Model Class Initialized");
 		
 		if($this->table == null){ $this->table = strtolower(get_class($this)); }
+		
+		if ($where != NULL)
+		{
+			if(!is_array($where))
+				$where = array('id'=>$where);
+			// try and get a row with this ID
+			$user_data = $this->db->get_where($this->table, $where);
+			
+			// try and assign the data
+			if (count($user_data) == 1 AND $data = $user_data->row_array())
+			{
+				foreach ($data as $key => $value) {
+					$this->$key = $value;
+				}
+			}
+		}
 	}
 	
 	/**
@@ -28,10 +46,10 @@ class Vaspasian_Model extends Model
 	 * @param integer array $where
 	 * @return object
 	 */
-	public static function factory($model = FALSE)
+	public static function factory($model = FALSE, $where = FALSE)
 	{
 		$model = empty($model) ? __CLASS__ : ucfirst($model).'s';
-		return new $model();
+		return new $model($where);
 	}
 	
 	public function __destruct()

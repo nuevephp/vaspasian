@@ -3,22 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Flash Web | <?php echo $page_title; ?></title>
-<link href="<?php echo base_url() . THEME_PATH; ?>flash_web/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo theme_directory(); ?>/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	<!-- top navigation start -->
 	<div id="topNav">
-		<a href="<?php echo site_url(); ?>" title="Flash Web"><img src="<?php echo base_url() . THEME_PATH; ?>flash_web/images/logo_text.gif" alt="Flash Web" width="179" height="35" border="0" /></a>
-		<ul>
-			<li><a href="<?php echo site_url(); ?>" title="Home" <?php if(current_url() === site_url()) echo 'class="hover"'; ?>>Home</a></li>
-			<li><a href="<?php echo site_url('about'); ?>" title="About us" <?php if(current_url() === site_url('about')) echo 'class="hover"'; ?>>About Us</a></li>
-			<li><a href="<?php echo site_url(); ?>" title="Support">Support</a></li>
-			<li><a href="<?php echo site_url(); ?>" title="Works">Works</a></li>
-			<li><a href="<?php echo site_url(); ?>" title="Ideas">Ideas</a></li>
-			<li><a href="<?php echo site_url(); ?>" title="Profits">Profits</a></li>
-			<li><a href="<?php echo site_url(); ?>" title="Contact">Contact</a></li>
-		</ul>
+		<a href="<?php echo site_url(); ?>" title="Flash Web"><img src="<?php echo theme_directory(); ?>/images/logo_text.gif" alt="Flash Web" width="179" height="35" border="0" /></a>
+		<?php theme_block('components/navigation'); ?>
 	</div>
 	<!-- top navigation end -->
 	<!-- body start -->

@@ -22,8 +22,8 @@ class Pages extends Vaspasian_Model
 
     function find_page_id($page)
     {
-	    $query = $this->db->from($this->table)->where("slug", $page)->get()->row_array();
-	    return (count($query) > 0) ? $query->id : 0;
+	    $query = $this->db->from($this->table)->where('slug', $page)->get()->row_array();
+	    return (count($query) > 0) ? $query['id'] : 0;
 	}
 
     function find_page($page)
@@ -31,9 +31,9 @@ class Pages extends Vaspasian_Model
 	    if (isset($page['child']))
 	    {
 		    $child_id = $this->find_page_id($page['parent']);
-		    $query = $this->db->from($this->table)->where(array("slug" => $page['child']))->limit("1")->get()->row_array();
+		    $query = $this->db->from($this->table)->where(array('slug' => $page['child'], 'parent_id' => $child_id))->limit("1")->get()->row_array();
 	    } else {
-		    $query = $this->db->from($this->table)->where("slug", $page['parent'])->limit("1")->get()->row_array();
+		    $query = $this->db->from($this->table)->where('slug', $page['parent'])->limit("1")->get()->row_array();
 	    }
 		
 	    /* Check to see if the page exists */

@@ -12,14 +12,29 @@
  * @copyright	Copyright (c) 2009, Silent Works.
  * @date		24 Apr 2009
  */
-class Module extends Controller
+class Module extends Vaspasian
 {
 	public function __construct() {
-		parent::__construct();
+	    parent::__construct();
+		
+		// Set mode and module name
+	    $this->template['admin'] = true;
+	    $this->template['module'] = 'admin';
 	}
 	
 	public function index() {
-		$this->get_details();
+		// $this->get_details();
+		
+		// Page title
+		$this->template['title'] = 'Pages';
+		
+		// Content
+		$this->template['page_title'] = 'Pages';
+        
+        // View to load
+        $view = 'module/index';
+        
+        $this->layout->load($this->template, $view);
 	}
 	
 	public function get_details() {
@@ -43,7 +58,7 @@ class Module extends Controller
 	
 	public function load_xml($xml) {
 		$xml = simplexml_load_file($xml);
-		var_dump($xml);
+		
 	}
 	public function install() {
 		

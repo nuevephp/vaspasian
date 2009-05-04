@@ -22,10 +22,29 @@ class Admin extends Controller
 		
 		// Set module name
 		$this->template['module'] = 'admin';
+		
+		// Load Configuration
+		$this->config->load('vaspasian');
+		
+		// Load Helpers
+		$this->load->helper('admin');
+		
+		// Set Master view variables
+		$this->template['site_name'] = 'Vaspasian';
+		$this->template['system_name'] = 'Vaspasian'; // System Name
+		$this->template['system_version'] = $this->config->item('vasp_version'); // System Version
+		
+		// System Configurations
+		define('WEBROOT', $this->config->item('webroot')); // Set website root
+		$this->public_folder = $this->config->item('public_folder');
 	}
 	
 	public function index() {
+		
+		// Page title
+		$this->template['title'] = 'Dashboard';
 		$this->template['page_title'] = 'Dashboard';
+		
 		$this->layout->load($this->template,'frontdesk/main');
 	}
 }

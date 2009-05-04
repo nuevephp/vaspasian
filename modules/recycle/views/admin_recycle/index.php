@@ -19,53 +19,53 @@
 									$i++;
 							?>
 								<tr class="<?php echo $row; ?>">
-									<td class="col col-0"><?php echo $recycle->name; ?></td>
+									<td class="col col-0"><?php echo $recycle['name']; ?></td>
 									<td class="col col-1">
 										<?php
-											$property = unserialize($recycle->data);
+											$property = unserialize($recycle['data']);
 											/*echo "<pre>";
 											var_dump($property);
 											echo "</pre>";*/
-											switch($recycle->table){
+											switch($recycle['table']){
 												case "files":
-													if(file_exists(WEBROOT . $public_folder . '/images/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/images/'.$property->file .'" class="overlay" target="image"><img src="'. vasp_theme() .'/images/photo.png' .'" /></a>';
-													} else if(file_exists(WEBROOT . $public_folder . '/documents/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/documents/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/document.png' .'" /></a>';
-													} else if(file_exists(WEBROOT . $public_folder . '/audio/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/audio/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
-													} else if(file_exists(WEBROOT . $public_folder . '/video/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/video/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
+													if(file_exists(WEBROOT . $public_folder . '/images/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/images/'.$property['file'] .'" class="overlay" target="image"><img src="'. vasp_theme() .'/images/photo.png' .'" /></a>';
+													} else if(file_exists(WEBROOT . $public_folder . '/documents/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/documents/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/document.png' .'" /></a>';
+													} else if(file_exists(WEBROOT . $public_folder . '/audio/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/audio/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
+													} else if(file_exists(WEBROOT . $public_folder . '/video/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/video/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
 													}
 												break;
 												case "layouts":
-													echo $property->type;
+													echo $property['type'];
 												break;
 												case "newsletters":
-													if(file_exists(WEBROOT.'upload/audio/'.$property->file)) {
-														echo '<a href="'. base_url().'upload/audio/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
+													if(file_exists(WEBROOT.'upload/audio/'.$property['file'])) {
+														echo '<a href="'. base_url().'upload/audio/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
 													}
 												break;
 												case "videos":
-													if(file_exists(WEBROOT.'upload/video/'.$property->file)) {
-														echo '<a href="'. base_url().'upload/video/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
+													if(file_exists(WEBROOT.'upload/video/'.$property['file'])) {
+														echo '<a href="'. base_url().'upload/video/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
 													}
 												break;
 												default:
-													if(file_exists(WEBROOT . $public_folder . '/images/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/images/'.$property->file .'" class="overlay" target="image"><img src="'. vasp_theme() .'/images/photo.png' .'" /></a>';
-													} else if(file_exists(WEBROOT . $public_folder . '/documents/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/documents/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/document.png' .'" /></a>';
-													} else if(file_exists(WEBROOT . $public_folder . '/audio/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/audio/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
-													} else if(file_exists(WEBROOT . $public_folder . '/video/'.$property->file)) {
-														echo '<a href="'. base_url() . $public_folder . '/video/'.$property->file .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
+													if(file_exists(WEBROOT . $public_folder . '/images/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/images/'.$property['file'] .'" class="overlay" target="image"><img src="'. vasp_theme() .'/images/photo.png' .'" /></a>';
+													} else if(file_exists(WEBROOT . $public_folder . '/documents/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/documents/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/document.png' .'" /></a>';
+													} else if(file_exists(WEBROOT . $public_folder . '/audio/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/audio/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/audio.png' .'" /></a>';
+													} else if(file_exists(WEBROOT . $public_folder . '/video/'.$property['file'])) {
+														echo '<a href="'. base_url() . $public_folder . '/video/'.$property['file'] .'" target="_blank"><img src="'. vasp_theme() .'/images/video.png' .'" /></a>';
 													}
 												break;
 											}
 										?>
 									</td>
-									<td class="col col-2"><a href="<?php echo site_url('admin/recycle/restore/'.$recycle->id); ?>">Restore</a> | <a href="<?php echo site_url('admin/recycle/del/'.$recycle->id); ?>">Delete</a></td>
+									<td class="col col-2"><a href="<?php echo site_url('admin/recycle/restore/'.$recycle['id']); ?>">Restore</a> | <a href="<?php echo site_url('admin/recycle/del/'.$recycle['id']); ?>">Delete</a></td>
 								</tr>
 						<?php } ?>
 					<?php } ?>

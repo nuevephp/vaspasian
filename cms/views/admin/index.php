@@ -28,9 +28,9 @@
 		<div id="admin_nav">
 			<ul>
 				<li><a href="<?php echo site_url('admin/recycle'); ?>"><span>Recycle</span></a></li>
-				<li><a href="<?php echo site_url('admin/file'); ?>"><span>File</span></a></li>
-				<li><a href="<?php echo site_url('admin/layout'); ?>"><span>Layout</span></a></li>
-				<li><a href="<?php echo site_url('admin/settings'); ?>"><span>Settings</span></a></li>
+				<li><a href="<?php echo site_url('admin/file'); ?>"><span>File Management</span></a></li>
+				<li><a href="<?php echo site_url('admin/module'); ?>"><span>Modules</span></a></li>
+				<li><a href="<?php echo site_url('admin/setting'); ?>"><span>Settings</span></a></li>
 			</ul>
 		</div>
 	</div>

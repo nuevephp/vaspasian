@@ -56,6 +56,44 @@ class Page extends Frontend
 			show_404();
 		}
 	}
+	
+	public function us() {
+		$uri_slug = array();
+		if ( $this->uri->segment(1) )
+		{
+			$num = 1;
+			$built_uri = '';
+			
+			while ( $segment = $this->uri->segment($num))
+			{
+				$built_uri .= $segment.'/';
+				$num++;
+			}
+			
+			$new_length = strlen($built_uri) - 1;
+			$new_uri = array_reverse(explode('/', substr($built_uri, 0, $new_length)));
+			
+			if (count($new_uri) > 1) {
+				$uri_slug['parent'] = $new_uri[1];
+				$uri_slug['child'] = $new_uri[0];
+			} else {
+				$uri_slug['parent'] = $new_uri[0];
+			}
+		}
+		else
+		{
+			$uri_slug['parent'] = 'home';
+		}
+		
+		if($content = $this->pages->find_page($uri_slug)) {
+			$this->template['page_title'] = $content['title'];
+			$this->template['slug'] = $content['slug'];
+			$this->template['content'] = $content['content'];
+			$this->layout->load($this->template, 'page/index');
+		} else {
+			show_404();
+		}
+	}
 }
 /* End of file page.php */
 /* Location: ./cms/controllers/page.php */

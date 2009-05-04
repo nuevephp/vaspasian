@@ -5,7 +5,6 @@ if ( ! function_exists('theme_block'))
 	function theme_block($name = '')
 	{
 		$file = THEME_PATH . theme_name() .'/'. $name . EXT;
-		
 		if(file_exists($file)){
 			include_once($file);
 		}
@@ -51,16 +50,15 @@ if ( ! function_exists('vasp_navi'))
 	}
 }
 
-if ( ! function_exists('breadcrumbs'))
+if ( ! function_exists('vasp_breadcrumbs'))
 {
-	function breadcrumbs()
+	function vasp_breadcrumbs($trail_delimeter = '&raquo;', $open_tag = '<p>', $close_tag = '</p>')
 	{
 		$CI =& get_instance();
 	    $CI->load->helper('inflector');
 	    
 	    $breadcrumbs = array();
 	
-	    // No crumbs?
 	    if(count($breadcrumbs) == 0) {
 	
 	    	$url_parts = array();
@@ -69,7 +67,7 @@ if ( ! function_exists('breadcrumbs'))
 	    	foreach($segment as $url_ref) {
 	    		
 	    		// Skip if we already have this breadcrumb and its not admin
-	    		if(in_array($url_ref, $url_parts) or $url_ref == 'admin') continue;
+	    		//if(in_array($url_ref, $url_parts) or $url_ref == 'admin') continue;
 	
 	    		$url_parts[] = $url_ref;
 	    		$breadcrumbs[] = array('name'=>humanize(str_replace('-', ' ', $url_ref)), 'url'=>implode('/', $url_parts), 'current_page' => FALSE );
@@ -77,10 +75,22 @@ if ( ! function_exists('breadcrumbs'))
 	    	
 	    	$url_parts[] = $last_segment;
 	    	$breadcrumbs[] = array('name'=>humanize(str_replace('-', ' ', $last_segment)), 'url'=>implode('/', $url_parts), 'current_page' => TRUE );
-	
 	    }
-	
-	    return $breadcrumbs;
+	    
+	    // Build HTML to output
+	    $html = $open_tag . '<a href="'. site_url('home') .'">Home</a> ';
+				foreach($breadcrumbs as $breadcrumb){
+					if(!$breadcrumb['current_page']){
+						$html .= $trail_delimeter . ' ' .'<a href="'. site_url($breadcrumb['url']) .'">'. $breadcrumb['name'] .'</a> ';
+					} elseif(current_url() === site_url('home') || uri_string() === ''){
+						$html .= '';
+					} else {
+						$html .= $trail_delimeter . ' ' . $breadcrumb['name'];
+					}
+				}
+		$html .= $close_tag;
+	    
+	    echo $html;
 	}
 }
 
