@@ -2,11 +2,9 @@ Vaspasian is a open source modular content management system built on Codeignite
 
 Vaspasian core features are:
 
-<ul>
-	<li>Page Template</li>
-	<li>RSS Feed</li>
-	<li>File Manager</li>
-	<li>User Management</li>
-	<li>Site Statistics [Google Analytics]</li>
-	<li>Site Search</li>
-</ul>
+* Page Template
+* RSS Feed
+* File Manager
+* User Management
+* Site Statistics [Google Analytics]
+* Site Search
